@@ -294,7 +294,14 @@ h1, h2, h3 {
    plus bas dans la page.
    Le halo reprend celui des pastilles de port (box-shadow 0 0 8px), assez
    faible pour ne pas baver sur un titre de 4,6rem. */
-.hero h1 span {
+/* Chaque temps de l'accroche est insecable. Sans ca, 13ch laissait la coupure
+   tomber apres « Your », qui restait orpheline en fin de ligne — la pire des
+   trois mises en page possibles pour une phrase a trois temps. */
+.hero h1 .beat { white-space: nowrap; }
+
+.hero h1 .w-midi,
+.hero h1 .w-audio,
+.hero h1 .w-control {
   text-shadow: 0 0 38px color-mix(in srgb, currentColor 30%, transparent);
 }
 .hero h1 .w-midi { color: var(--midi); }
