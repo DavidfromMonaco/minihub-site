@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MiniHub — the graph decides what you hear</title>
+<meta name="description" content="A desktop music workstation for Windows built around the Arturia MiniLab 3: a Patch Bay of typed cables, a native VST3 host, and a sample-accurate sequencer.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0e1013">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 4 26.4 10 26.4 22 16 28 5.6 22 5.6 10Z" fill="none" stroke="#3a5a9f" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="16" cy="4" r="3.4" fill="#0e1013" stroke="#4f8cff" stroke-width="2.2"/>
+        <circle cx="26.4" cy="22" r="3.4" fill="#0e1013" stroke="#e0b04c" stroke-width="2.2"/>
+        <circle cx="5.6" cy="22" r="3.4" fill="#0e1013" stroke="#c77dff" stroke-width="2.2"/>
+      </svg>
+      MiniHub
+    </a>
+    <nav class="nav">
+      <a href="#patch-bay">Patch Bay</a>
+      <a href="#features" class="optional">Features</a>
+      <a href="#approach">Approach</a>
+      <a href="https://github.com/DavidfromMonaco/minihub">Source</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Desktop music workstation · Windows</p>
+      <h1>The graph decides what you hear.</h1>
+      <p class="lede">
+        MiniHub is a musical sandbox built around the Arturia MiniLab 3.
+        Typed cables in a Patch Bay — <em>not the page you happen to be looking
+        at</em> — decide the signal path.
+      </p>
+      <div class="actions">
+        <a class="btn" href="https://github.com/DavidfromMonaco/minihub#construire-et-lancer">Build from source</a>
+        <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub/blob/master/ARCHITECTURE.md">Read the architecture</a>
+      </div>
+      <p class="status-pill"><span class="port is-audio"></span> No release yet · builds from source</p>
+    </div>
+  </section>
+
+  <section class="section" id="patch-bay">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The Patch Bay</p>
+        <h2>Cables are typed. The graph is the only authority.</h2>
+        <p class="lede">
+          Three kinds of port, three kinds of cable. A MIDI output reaches a MIDI
+          input and nothing else. Sound does not follow the window you opened —
+          it follows the cable you drew.
+        </p>
+      </div>
+
+      <figure class="screen">
+        <picture>
+          <source srcset="img/routing.avif" type="image/avif">
+          <img src="img/routing.png" width="996" height="367"
+               alt="Three nodes wired in the MiniHub Patch Bay: MiniLab 3 sends MIDI Out to the MIDI In of VST 1, whose Audio Out reaches the Audio In of Audio Output.">
+        </picture>
+      </figure>
+      <p class="caption">Patch Bay · MiniLab 3 → VST 1 → Audio Output</p>
+
+      <ul class="legend">
+        <li><span class="port is-midi"></span> MIDI — notes and control change</li>
+        <li><span class="port is-audio"></span> Audio — signal to the engine</li>
+        <li><span class="port is-control"></span> Control — parameters, no sound</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What it does</p>
+        <h2>Five parts, one signal path.</h2>
+      </div>
+
+      <div class="features">
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-midi"></span> Routing</p>
+          <h3>Patch Bay</h3>
+          <p>Typed ports that refuse the wrong connection, cycle detection, and a
+             graph that survives every panel you open and close.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-audio"></span> Native engine</p>
+          <h3>VST3 host</h3>
+          <p>Serial plugin chains with native editors, plugin state saved inside
+             the project. C++17 and JUCE on WASAPI, sample-accurate.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-audio"></span> Arrangement</p>
+          <h3>Sequencer</h3>
+          <p>MIDI and audio tracks on one timeline, recording, a clip editor, and
+             multi-format export that renders what you heard.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> Processing</p>
+          <h3>Mixer, Morpher, Arpeggiator</h3>
+          <p>Nodes you wire like anything else. The arpeggiator carries its own
+             instrument face — knobs and a step grid, not a form.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> Hardware</p>
+          <h3>Control learning</h3>
+          <p>Bind a physical knob or pad to a VST3 parameter. Native MIDI keeps
+             working while the binding is made.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-midi"></span> Live</p>
+          <h3>Rewire while it plays</h3>
+          <p>Adding, moving and unplugging nodes never stops the audio. Generative
+             sets are meant to be changed mid-flight, not reloaded.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="learning">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Control learning</p>
+        <h2>Arm a knob. Move it. It is bound.</h2>
+        <p class="lede">
+          Pick a control on the MiniLab, arm learning, then touch the parameter you
+          want it to drive. The controller is drawn as it really is — eight knobs,
+          four faders, eight pads, two touch strips.
+        </p>
+      </div>
+
+      <figure class="screen">
+        <picture>
+          <source srcset="img/bindings.avif" type="image/avif">
+          <img src="img/bindings.png" width="1641" height="419"
+               alt="The MiniLab 3 control surface drawn in MiniHub, with knobs K1 to K8, faders F1 to F4 and eight coloured pads, above an Arm Learning button.">
+        </picture>
+      </figure>
+      <p class="caption">Control bindings · the MiniLab 3 surface, drawn from the device profile</p>
+    </div>
+  </section>
+
+  <section class="section" id="approach">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The approach</p>
+        <h2>Most of the design is what it refuses.</h2>
+        <p class="lede">
+          These are not gaps waiting to be filled. Each one is a decision, written
+          down with its reason, and each one is what keeps the rest small enough to
+          reason about.
+        </p>
+      </div>
+
+      <dl class="refusals">
+        <div>
+          <dt>No build step</dt>
+          <dd>No bundler, no transpiler, no framework. What sits in <code>src/</code>
+              is exactly what runs.</dd>
+        </div>
+        <div>
+          <dt>No runtime dependencies</dt>
+          <dd>Two development dependencies, and neither one ships. Tests run on
+              <code>node:test</code>, not a runner.</dd>
+        </div>
+        <div>
+          <dt>No network</dt>
+          <dd>Nothing phones home. No account, no telemetry, no usage statistics,
+              no update check. It works with the cable unplugged.</dd>
+        </div>
+        <div>
+          <dt>No plugin system</dt>
+          <dd>No scripting language, no public API, no extension format. The
+              plugins are VST3 — that problem is already solved.</dd>
+        </div>
+        <div>
+          <dt>Windows only</dt>
+          <dd>WASAPI, the Windows VST3 format and <code>%APPDATA%</code> are
+              commitments, not debt. A portability layer added just in case is
+              refused on sight.</dd>
+        </div>
+        <div>
+          <dt>Not a DAW clone</dt>
+          <dd>A feature is never justified by other software having it. It is
+              justified by finishing a track, or by playing live.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="status">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Status</p>
+        <h2>A personal project, in active development.</h2>
+        <p class="lede">
+          There is no release and no installer yet. MiniHub builds and runs from
+          source on Windows 10 and 11, with Visual Studio 2022, CMake 3.22 and
+          Node 20 or newer. The native SDKs are fetched separately and never
+          committed.
+        </p>
+      </div>
+
+      <dl class="state">
+        <div>
+          <dt>JavaScript tests</dt>
+          <dd>586<small>node:test, no runner</small></dd>
+        </div>
+        <div>
+          <dt>Native checks</dt>
+          <dd>3 952<small>four test binaries</small></dd>
+        </div>
+        <div>
+          <dt>Release build</dt>
+          <dd>0<small>errors and warnings</small></dd>
+        </div>
+        <div>
+          <dt>Licence</dt>
+          <dd>MIT<small>source on GitHub</small></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <p>MiniHub — a musical sandbox for Windows.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/DavidfromMonaco/minihub">Source</a></li>
+        <li><a href="https://github.com/DavidfromMonaco/minihub/blob/master/ARCHITECTURE.md">Architecture</a></li>
+        <li><a href="https://github.com/DavidfromMonaco/minihub/blob/master/LICENSE">Licence</a></li>
+      </ul>
+    </div>
+    <p class="disclaimer">
+      MiniHub is an independent project and is not affiliated with, endorsed by or
+      sponsored by Arturia. MiniLab is a trademark of Arturia. This site sets no
+      cookies, runs no scripts and collects nothing.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

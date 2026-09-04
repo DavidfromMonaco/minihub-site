@@ -1,0 +1,536 @@
+/* ==========================================================================
+   MiniHub — site public
+   Feuille unique, ecrite a la main. Aucune etape de build, aucune dependance,
+   aucune ressource distante : la CSP du site est `default-src 'self'`, donc
+   tout ce que la page charge vit dans ce depot.
+
+   La palette n'est pas inventee ici. Elle est reprise de
+   src/renderer/styles/base.css dans le depot de l'application, pour que le
+   site et le logiciel soient la meme chose vue de deux endroits.
+   ========================================================================== */
+
+/* --- Polices auto-hebergees. Variables, un seul fichier par sous-ensemble. - */
+
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/geist-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/geist-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/geist-mono-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../fonts/geist-mono-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --- Jetons ------------------------------------------------------------- */
+
+:root {
+  /* Surfaces. --ground est propre au site : un cran sous le fond de l'app,
+     pour que les captures s'y posent en relief au lieu de s'y fondre. */
+  --ground: #0e1013;
+  --app: #191b1e;
+  --raised: #1f2226;
+  --panel: #23262b;
+  --border: #2e3238;
+  --border-strong: #3a3f46;
+
+  --text: #e6e8eb;
+  --dim: #9aa1a9;
+  --faint: #6b727a;
+
+  /* Les trois types de port. Ce ne sont pas des couleurs decoratives :
+     ce sont les trois types de cable du Patch Bay. */
+  --midi: #4f8cff;
+  --audio: #e0b04c;
+  --control: #c77dff;
+  --accent: var(--midi);
+
+  --sans: "Geist", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* Le reglage du fond de heros. Mesure, pas devine : a 0.40, le pixel le
+     plus clair de l'image tombe a 87/255, ce qui donne 5,8:1 au texte
+     principal. Au-dessus de 0.45 le contraste passe sous le seuil AA. */
+  --hero-brightness: 0.4;
+  --hero-saturate: 0.85;
+
+  --measure: 62ch;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --radius: 14px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Grain. Sans lui, les longs degrades sombres montrent des bandes sur les
+   dalles OLED et les ecrans 8 bits. Genere en ligne : aucun fichier. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+:where(a):focus-visible,
+:where(button):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- Elements partages -------------------------------------------------- */
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.lede {
+  margin: 0;
+  max-width: var(--measure);
+  color: var(--dim);
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+}
+
+/* La pastille de port : un anneau, pas un disque — comme les ports du
+   Patch Bay, ou la forme porte le type autant que la couleur. */
+.port {
+  display: inline-block;
+  inline-size: 10px;
+  block-size: 10px;
+  flex: none;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  box-shadow: 0 0 8px -1px currentColor;
+}
+.is-midi { color: var(--midi); }
+.is-audio { color: var(--audio); }
+.is-control { color: var(--control); }
+
+/* --- Barre de navigation ------------------------------------------------ */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-block-end: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+}
+.topbar .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-block-size: 3.75rem;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+.brand svg { display: block; }
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 1.9rem);
+  font-size: 0.9375rem;
+}
+.nav a {
+  color: var(--dim);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.nav a:hover { color: var(--text); }
+@media (max-width: 640px) {
+  .nav .optional { display: none; }
+}
+
+/* --- Heros -------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(4.5rem, 13vw, 9.5rem) clamp(4rem, 11vw, 8rem);
+  border-block-end: 1px solid var(--border);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url("../img/hero.jpg");
+  background-image: image-set(
+    url("../img/hero.avif") type("image/avif"),
+    url("../img/hero.jpg") type("image/jpeg")
+  );
+  background-size: cover;
+  background-position: center 40%;
+  filter: brightness(var(--hero-brightness)) saturate(var(--hero-saturate));
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(115% 75% at 50% 38%, transparent 0%,
+      color-mix(in srgb, var(--ground) 45%, transparent) 62%,
+      color-mix(in srgb, var(--ground) 88%, transparent) 100%),
+    linear-gradient(to bottom,
+      color-mix(in srgb, var(--ground) 55%, transparent) 0%,
+      transparent 26%,
+      color-mix(in srgb, var(--ground) 82%, transparent) 88%,
+      var(--ground) 100%);
+}
+.hero .wrap {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 6.2vw, 4.6rem);
+  line-height: 1.02;
+  max-width: 15ch;
+}
+.hero .lede {
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  max-width: 52ch;
+}
+.hero .lede em {
+  font-style: normal;
+  color: var(--text);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-block-start: 0.5rem;
+}
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.3rem;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #08121f;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  transition: filter 0.15s ease;
+}
+.btn:hover { filter: brightness(1.12); }
+.btn-quiet {
+  color: var(--dim);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  border-block-end: 1px solid var(--border-strong);
+  padding-block-end: 2px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.btn-quiet:hover { color: var(--text); border-block-end-color: var(--accent); }
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-block-start: 0.75rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--app) 75%, transparent);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* --- Sections ----------------------------------------------------------- */
+
+.section {
+  padding-block: clamp(3.5rem, 9vw, 6.5rem);
+  border-block-end: 1px solid var(--border);
+}
+.section-head {
+  display: grid;
+  gap: 0.9rem;
+  max-width: var(--measure);
+  margin-block-end: clamp(2rem, 4vw, 3rem);
+}
+.section-head h2 {
+  font-size: clamp(1.65rem, 3.4vw, 2.5rem);
+  line-height: 1.1;
+}
+
+/* --- Cadre de capture --------------------------------------------------- */
+
+/* Une capture d'ecran n'est pas une illustration : c'est un ecran. Le cadre
+   le dit, et l'aplat au fond de l'app (#191b1e) evite le halo blanc. */
+.screen {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--app);
+  padding: clamp(0.5rem, 1.5vw, 1rem);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.045),
+    0 30px 60px -45px rgb(0 0 0 / 0.9);
+  overflow-x: auto;
+}
+.screen img {
+  display: block;
+  inline-size: 100%;
+  min-inline-size: 34rem;
+  block-size: auto;
+  border-radius: calc(var(--radius) - 6px);
+}
+.screen.is-pearl img { min-inline-size: 40rem; }
+.caption {
+  margin: 0.9rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--faint);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.75rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.legend li { display: inline-flex; align-items: center; gap: 0.55rem; }
+
+/* --- Grille de fonctions ------------------------------------------------ */
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.feature {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background: var(--ground);
+}
+.feature-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.feature h3 {
+  font-size: 1.125rem;
+  letter-spacing: -0.015em;
+}
+.feature p {
+  margin: 0;
+  color: var(--dim);
+  font-size: 0.9375rem;
+}
+
+/* --- Le parti pris : une liste de refus --------------------------------- */
+
+.refusals {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-block-start: 1px solid var(--border);
+}
+.refusals > div {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: 0.4rem clamp(1.5rem, 4vw, 3rem);
+  padding-block: clamp(1.1rem, 2.4vw, 1.6rem);
+  border-block-end: 1px solid var(--border);
+}
+.refusals dt {
+  font-weight: 600;
+  font-size: 1.0625rem;
+  letter-spacing: -0.015em;
+}
+.refusals dd {
+  margin: 0;
+  color: var(--dim);
+  max-width: 54ch;
+}
+.refusals code {
+  font-family: var(--mono);
+  font-size: 0.875em;
+  color: var(--text);
+}
+@media (max-width: 720px) {
+  .refusals > div { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --- Releve d'etat ------------------------------------------------------ */
+
+.state {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 1px;
+  margin-block-start: clamp(2rem, 4vw, 3rem);
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.state div {
+  display: grid;
+  gap: 0.3rem;
+  padding: 1.25rem clamp(1.1rem, 2.5vw, 1.6rem);
+  background: var(--app);
+}
+.state dt {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.state dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.35rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+.state dd small {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--dim);
+}
+
+/* --- Pied de page ------------------------------------------------------- */
+
+.site-footer {
+  padding-block: clamp(3rem, 7vw, 4.5rem) clamp(3.5rem, 8vw, 5rem);
+  color: var(--faint);
+  font-size: 0.875rem;
+}
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer-links a { color: var(--dim); text-decoration: none; }
+.footer-links a:hover { color: var(--text); }
+.disclaimer {
+  margin: 2.5rem 0 0;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--border);
+  max-width: var(--measure);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.75;
+}
