@@ -80,11 +80,16 @@
   --sans: "Geist", "Segoe UI", system-ui, -apple-system, sans-serif;
   --mono: "Geist Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
 
-  /* Le reglage du fond de heros. Mesure, pas devine : a 0.40, le pixel le
-     plus clair de l'image tombe a 87/255, ce qui donne 5,8:1 au texte
-     principal. Au-dessus de 0.45 le contraste passe sous le seuil AA. */
-  --hero-brightness: 0.4;
-  --hero-saturate: 0.85;
+  /* Le reglage du fond de heros. A 0.40 l'image etait sure partout, mais on
+     ne voyait plus rien : le fond devenait un degrade noir, et l'image que
+     l'auteur a choisie ne servait a rien.
+     Le voile de .hero::after est donc devenu directionnel — opaque a gauche
+     ou vit le texte, transparent a droite ou l'image respire. Cela permet de
+     remonter la luminosite sans perdre le contraste : sous le texte, le pixel
+     le plus clair (120/255 a 0.55) retombe a ~49/255 une fois voile, ce qui
+     tient le seuil AA de 4,5:1 pour le paragraphe. */
+  --hero-brightness: 0.55;
+  --hero-saturate: 0.95;
 
   --measure: 62ch;
   --gutter: clamp(1.25rem, 4vw, 3rem);
@@ -253,13 +258,16 @@ h1, h2, h3 {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(115% 75% at 50% 38%, transparent 0%,
-      color-mix(in srgb, var(--ground) 45%, transparent) 62%,
-      color-mix(in srgb, var(--ground) 88%, transparent) 100%),
+    linear-gradient(to right,
+      color-mix(in srgb, var(--ground) 93%, transparent) 0%,
+      color-mix(in srgb, var(--ground) 85%, transparent) 50%,
+      color-mix(in srgb, var(--ground) 60%, transparent) 68%,
+      color-mix(in srgb, var(--ground) 12%, transparent) 88%,
+      transparent 100%),
     linear-gradient(to bottom,
       color-mix(in srgb, var(--ground) 55%, transparent) 0%,
       transparent 26%,
-      color-mix(in srgb, var(--ground) 82%, transparent) 88%,
+      color-mix(in srgb, var(--ground) 78%, transparent) 88%,
       var(--ground) 100%);
 }
 .hero .wrap {
@@ -267,10 +275,16 @@ h1, h2, h3 {
   gap: 1.5rem;
   justify-items: start;
 }
+/* 13ch, pas 15 : « Your signal. » fait 12 caracteres, donc chaque phrase
+   prend sa ligne et les trois beats de l'accroche s'empilent. A 15ch la
+   coupure tombait apres « Your », qui restait orpheline en fin de ligne.
+   L'unite ch suit la taille de police, donc l'empilement tient a toutes les
+   largeurs d'ecran. */
 .hero h1 {
   font-size: clamp(2.4rem, 6.2vw, 4.6rem);
-  line-height: 1.02;
-  max-width: 15ch;
+  line-height: 1.04;
+  max-width: 13ch;
+  text-wrap: pretty;
 }
 .hero .lede {
   font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
