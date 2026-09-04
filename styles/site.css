@@ -286,6 +286,20 @@ h1, h2, h3 {
   max-width: 13ch;
   text-wrap: pretty;
 }
+
+/* Les trois mots portent les trois types de cable, dans l'ordre ou le signal
+   les traverse : ce que tu joues arrive en MIDI, ce que tu entends ressort en
+   audio, et la facon dont tu le plies passe par les liens control. La couleur
+   n'est pas decorative — elle dit la meme chose que la legende du Patch Bay
+   plus bas dans la page.
+   Le halo reprend celui des pastilles de port (box-shadow 0 0 8px), assez
+   faible pour ne pas baver sur un titre de 4,6rem. */
+.hero h1 span {
+  text-shadow: 0 0 38px color-mix(in srgb, currentColor 30%, transparent);
+}
+.hero h1 .w-midi { color: var(--midi); }
+.hero h1 .w-audio { color: var(--audio); }
+.hero h1 .w-control { color: var(--control); }
 .hero .lede {
   font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
   max-width: 52ch;
