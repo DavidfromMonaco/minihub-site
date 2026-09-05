@@ -27,9 +27,12 @@
       MiniHub
     </a>
     <nav class="nav">
-      <a href="#patch-bay">Patch Bay</a>
-      <a href="#features" class="optional">Features</a>
-      <a href="#approach">Approach</a>
+      <a href="/#patch-bay">Patch Bay</a>
+      <a href="/#features" class="optional">Features</a>
+      <a href="/#approach" class="optional">Approach</a>
+      <a href="/setups/">Setups</a>
+      <a href="/builder/">Builder</a>
+      <a href="/#download">Download</a>
       <a href="https://github.com/DavidfromMonaco/minihub">Source</a>
     </nav>
   </div>
@@ -47,10 +50,10 @@
         at</em> — decide the signal path.
       </p>
       <div class="actions">
-        <a class="btn" href="https://github.com/DavidfromMonaco/minihub#build-and-run">Build from source</a>
+        <a class="btn" href="/#download">Download for Windows</a>
         <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub/blob/master/ARCHITECTURE.md">Read the architecture</a>
       </div>
-      <p class="status-pill"><span class="port is-audio"></span> No release yet · builds from source</p>
+      <p class="status-pill"><span class="port is-audio"></span> Pre-alpha 0.1.0 · installer or portable folder</p>
     </div>
   </section>
 
@@ -70,11 +73,11 @@
       <figure class="screen">
         <picture>
           <source srcset="img/routing.avif" type="image/avif">
-          <img src="img/routing.png" width="996" height="367"
-               alt="Three nodes wired in the MiniHub Patch Bay: MiniLab 3 sends MIDI Out to the MIDI In of VST 1, whose Audio Out reaches the Audio In of Audio Output.">
+          <img src="img/routing.png" width="1581" height="364"
+               alt="Four nodes wired in the MiniHub Patch Bay: a MiniLab 3 drawn as its own faceplate sends MIDI Out to the MIDI In of the Sequencer, which reaches the MIDI In of VST 1, whose Audio Out feeds Audio Output — while a control cable leaves a knob on the MiniLab for the CTRL In of VST 1.">
         </picture>
       </figure>
-      <p class="caption">Patch Bay · MiniLab 3 → VST 1 → Audio Output</p>
+      <p class="caption">Patch Bay · the keys reach the Sequencer, a knob reaches the plugin, and only VST 1 makes sound</p>
 
       <ul class="legend">
         <li><span class="port is-midi"></span> MIDI — notes and control change</li>
@@ -153,11 +156,85 @@
       <figure class="screen">
         <picture>
           <source srcset="img/bindings.avif" type="image/avif">
-          <img src="img/bindings.png" width="1641" height="419"
-               alt="The MiniLab 3 control surface drawn in MiniHub, with knobs K1 to K8, faders F1 to F4 and eight coloured pads, above an Arm Learning button.">
+          <img src="img/bindings.png" width="1637" height="437"
+               alt="The MiniLab 3 control surface drawn in MiniHub: knob K3 is selected and ringed in blue, the small screen reads Pad 1, faders F1 to F4 and eight pads labelled Arp, Pad, Prog, Loop, Stop, Play, Record and Tap sit below, and the bar underneath reads K3 unmapped beside an Arm Learning button.">
         </picture>
       </figure>
-      <p class="caption">Control bindings · the MiniLab 3 surface, drawn from the device profile</p>
+      <p class="caption">Control bindings · K3 selected, unmapped, waiting to be armed</p>
+    </div>
+  </section>
+
+  <section class="section" id="sequencer">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Arrangement</p>
+        <h2>A timeline that wires itself.</h2>
+        <p class="lede">
+          A track names its input and its destination; MiniHub lays the Patch Bay
+          cable that makes it true, and says so on the track. MIDI and audio share
+          one timeline, and the export renders what you heard.
+        </p>
+      </div>
+
+      <figure class="screen">
+        <picture>
+          <source srcset="img/sequencer.avif" type="image/avif">
+          <img src="img/sequencer.png" width="1690" height="347"
+               alt="The MiniHub sequencer: one MIDI track taking Minilab3 MIDI as its input and VST 1 as its destination, both cables reported as connected underneath, beside an empty timeline ruled in bars and an export panel offering WAV at 24-bit.">
+        </picture>
+      </figure>
+      <p class="caption">Sequencer · one track, the two cables it created, and a WAV export</p>
+    </div>
+  </section>
+
+  <section class="section" id="builder">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Any controller</p>
+        <h2>Not a MiniLab? Map yours in the browser.</h2>
+        <p class="lede">
+          MiniHub reads a <strong>setup file</strong> — what a controller sends,
+          and where each control sits on it. Someone may have written yours
+          already: plug the keyboard in and the setups page recognises it. If
+          nobody has, the Builder writes that file, and it starts out knowing
+          nothing: you show it one family at a time, turn a knob, hit a pad, and
+          it learns what your hardware has. Calibration is the first owner's
+          evening, not everyone's.
+        </p>
+      </div>
+
+      <div class="features">
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> Measured</p>
+          <h3>MIDI answers, you point</h3>
+          <p>The message says which control moved. A click on a photo of your own
+             keyboard says where it sits. Nothing is recognised, nothing is
+             guessed, and no catalogue of devices is consulted.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> Private</p>
+          <h3>The photo never leaves</h3>
+          <p>It is a backdrop to place controls on, read inside your browser and
+             dropped when you are done. No upload, no account, no server: the page
+             is static, like the rest of this site.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-midi"></span> Portable</p>
+          <h3>A file, then a keyboard</h3>
+          <p>Commit the setup and a JSON file lands in your downloads. MiniHub
+             loads it, draws your device from it, and plays through it — and
+             published setups are the same kind of file, readable before you
+             trust them.</p>
+        </article>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="/setups/">See if yours is mapped</a>
+        <a class="btn-quiet" href="/builder/">Open the Builder</a>
+      </div>
+      <p class="caption">Needs Web MIDI · Chrome, Edge and other Chromium browsers hear a MIDI port; Firefox and Safari do not</p>
     </div>
   </section>
 
@@ -209,27 +286,79 @@
     </div>
   </section>
 
+  <section class="section" id="download">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Download · Windows 10 and 11, 64-bit</p>
+        <h2>Install it, or just unzip it.</h2>
+        <p class="lede">
+          Two routes, one build, and neither is the lesser one. What you make —
+          settings, projects, recordings, the controller setups you import —
+          lives <em>outside</em> the application folder, so both routes read the
+          same data and moving between them loses nothing.
+        </p>
+      </div>
+
+      <div class="features">
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-audio"></span> Installer</p>
+          <h3>Setup.exe · 102 MB</h3>
+          <p>Installs for you alone, with no administrator prompt: a Start-menu
+             entry, a desktop shortcut if you want one, a line in <em>Add or
+             remove programs</em>. Uninstalling removes the application and
+             nothing you made.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-midi"></span> Portable</p>
+          <h3>ZIP folder · 143 MB</h3>
+          <p>Unzip anywhere and run <code>MiniHub.exe</code>. Nothing is
+             registered, nothing is written beside it. To update, drop the next
+             folder over this one.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> Pre-alpha</p>
+          <h3>It runs. It is not finished.</h3>
+          <p>The first public build: it plays, hosts VST3 plugins and records,
+             and it is under active development. The rough edges are listed in
+             the release notes rather than left to be discovered.</p>
+        </article>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.1.0/MiniHub-0.1.0-Setup.exe">Get the installer</a>
+        <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.1.0/MiniHub-0.1.0-portable.zip">Get the portable ZIP</a>
+      </div>
+      <p class="caption">Not code-signed, so SmartScreen will ask — More info, then Run anyway. <a href="https://github.com/DavidfromMonaco/minihub/releases/tag/v0.1.0">Release notes and SHA-256 sums</a> · <a href="https://github.com/DavidfromMonaco/minihub#build-and-run">Build it from source instead</a></p>
+    </div>
+  </section>
+
   <section class="section" id="status">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Status</p>
         <h2>A personal project, in active development.</h2>
         <p class="lede">
-          There is no release and no installer yet. MiniHub builds and runs from
-          source on Windows 10 and 11, with Visual Studio 2022, CMake 3.22 and
-          Node 20 or newer. The native SDKs are fetched separately and never
-          committed.
+          One person's project, and the download above is its first public
+          build. It also builds from source on Windows 10 and 11, with Visual
+          Studio 2022, CMake 3.22 and Node 20 or newer. The native SDKs are
+          fetched separately and never committed.
         </p>
       </div>
 
       <dl class="state">
         <div>
+          <dt>Latest release</dt>
+          <dd>0.1.0<small>pre-alpha, unsigned</small></dd>
+        </div>
+        <div>
           <dt>JavaScript tests</dt>
-          <dd>586<small>node:test, no runner</small></dd>
+          <dd>775<small>node:test, no runner</small></dd>
         </div>
         <div>
           <dt>Native checks</dt>
-          <dd>3 952<small>four test binaries</small></dd>
+          <dd>3 954<small>four test binaries</small></dd>
         </div>
         <div>
           <dt>Release build</dt>

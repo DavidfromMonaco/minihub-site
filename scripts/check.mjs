@@ -54,8 +54,14 @@ for (const page of pages) {
   // 3. Chaque ressource locale referencee existe reellement sur le disque.
   const localRefs = new Set();
   for (const [, url] of html.matchAll(/(?:src|href|srcset)=["']([^"'#][^"']*)["']/gi)) {
-    if (/^(https?:|mailto:|data:|\/$)/i.test(url)) continue;
-    localRefs.add(url.split("?")[0].replace(/^\//, ""));
+    if (/^(https?:|mailto:|data:)/i.test(url)) continue;
+    // Le fragment ne designe aucun fichier. « /#patch-bay » est la page
+    // d'accueil vue depuis une autre page -- la forme absolue est ce qui
+    // permet a l'entete d'etre le meme octet pour octet partout (regle 5),
+    // et sans cette ligne la regle 3 irait chercher un fichier « #patch-bay ».
+    const path = url.split("#")[0].split("?")[0].replace(/^\//, "");
+    if (path === "") continue;
+    localRefs.add(path);
   }
   for (const ref of localRefs) {
     if (!existsSync(join(ROOT, ref))) {
@@ -108,6 +114,48 @@ if (existsSync(imgDir)) {
       fail("image budget", `img/${name} pese ${Math.round(bytes / 1024)} Ko (budget 300 Ko)`);
     }
   }
+}
+
+// 8. Deux surfaces, deux postures. Les pages du site sont des documents et
+//    n'executent rien ; le Builder et la page des setups sont des outils, et
+//    Web MIDI leur impose du script. La difference est voulue (§5.4, §5.5),
+//    donc elle se verifie : une page qui gagnerait du script en silence est
+//    exactement ce contre quoi la CSP est ecrite, et un Builder qui perdrait
+//    la sienne ne dirait rien non plus -- il cesserait simplement de marcher.
+for (const page of pages) {
+  const rel = relative(ROOT, page).replace(/\\/g, "/");
+  const html = readFileSync(page, "utf8");
+  // Le contenu d'une CSP est plein d'apostrophes ('self', 'none') : la borne
+  // du champ est le guillemet qui l'ouvre, pas la premiere apostrophe venue.
+  const csp = (html.match(/<meta[^>]*http-equiv=["']Content-Security-Policy["'][^>]*content=(["'])([^]*?)\1/i) || [])[2];
+  if (!csp) {
+    fail("CSP presente", `${rel} ne declare aucune Content-Security-Policy`);
+    continue;
+  }
+  const script = ((csp.match(/script-src([^;]*)/i) || [])[1] || "").trim();
+  // Les fiches appareil du §5.4 arriveront dans cette moitie-la : elles sont
+  // des documents, et c'est cette ligne qui les y garde.
+  const outil = rel.startsWith("builder/") || rel.startsWith("setups/");
+  const attendu = outil ? "'self'" : "'none'";
+  if (script !== attendu) {
+    fail("posture CSP", `${rel} declare script-src « ${script || "(absent)"} », attendu « ${attendu} »`);
+  }
+}
+
+// 9. Les cartes de la page des setups correspondent aux fichiers dont elles
+//    parlent. Elles sont generees et commitees (§5.4 : le schema est ecrit par
+//    un script, jamais dessine dans le navigateur), donc rien n'empeche la page
+//    et les fichiers de diverger -- sauf ceci. Une carte qui annonce 25
+//    controles pour un fichier qui en declare 41 serait pire qu'absente : elle
+//    aurait l'air verifiee.
+try {
+  const { pageIsCurrent } = await import("./build-setups.mjs");
+  if (!pageIsCurrent().ok) {
+    fail("setups a jour", "setups/index.html ne correspond plus aux fichiers de setups/ "
+      + "-- « node scripts/build-setups.mjs --write »");
+  }
+} catch (error) {
+  fail("setups a jour", `la generation des cartes a echoue : ${error.message}`);
 }
 
 if (failures.length === 0) {

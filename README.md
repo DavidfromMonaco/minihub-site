@@ -29,8 +29,63 @@ node scripts/check.mjs
 Le vérificateur refuse : une ressource distante (la CSP est
 `default-src 'self'`, une police chargée ailleurs échouerait **en silence**),
 une `<img>` sans `alt`, un fichier référencé mais absent du disque, une seconde
-feuille de style, un entête ou un pied divergent d'une page à l'autre, et toute
-image au-dessus de 300 Ko.
+feuille de style, un entête ou un pied divergent d'une page à l'autre, toute
+image au-dessus de 300 Ko, une page dont la CSP n'est pas celle de sa nature
+— `script-src 'none'` partout, `'self'` dans `builder/` et `setups/` seulement —
+et une page de setups qui ne dit plus ce que disent les fichiers qu'elle décrit.
+
+## Les setups
+
+`setups/*.json` sont les fichiers publiés : ce que chaque contrôleur envoie et
+où ses commandes se trouvent. Ce sont les fichiers que MiniHub lit, tels quels —
+le site n'en dérive rien.
+
+`setups/index.html` ne dessine rien dans le navigateur. **Les cartes et leurs
+schémas sont générés puis commités** :
+
+```bash
+node scripts/build-setups.mjs           # dit si la page correspond aux fichiers
+node scripts/build-setups.mjs --write   # la réécrit
+```
+
+C'est le §5.4 de la spécification contrôleurs : un schéma écrit par un script et
+vérifié par `check.mjs` transforme la carte en **vérification** du setup, là où
+un dessin fait à la main n'en serait qu'une illustration. Les formes sont celles
+du Builder, à l'unité près, pour qu'un auteur retrouve ce qu'il a vu en calibrant.
+
+Le seul script que la page exécute reconnaît le clavier branché.
+**`midi/portRoles.js` est une copie octet pour octet** du fichier de
+l'application (§3.5) : Windows décore les noms de ports — « Minilab3 MIDI »
+arrive parfois en « MIDIIN2 (Minilab3 MIDI) » — et un `includes` écrit à la main
+ici donnerait au site un avis différent de celui de MiniHub, ce qui ne se verrait
+que chez quelqu'un d'autre, une fois le fichier téléchargé.
+
+**Ce qui n'existe pas encore** : le Worker Cloudflare de D-026. Il n'y a donc ni
+vote, ni bouton de signalement, ni dépôt direct d'un setup — un setup arrive à la
+main, par les issues de ce dépôt. La page ne montre aucun de ces boutons plutôt
+que d'en montrer qui ne feraient rien.
+
+## Le Builder
+
+`builder/index.html` est la seule page qui exécute du JavaScript, et c'est un
+choix, pas un oubli : Web MIDI et le placement des contrôles sur une photo
+n'existent pas sans script. Le reste du site est un document et le reste.
+
+Il lit les messages du clavier branché, demande une famille de contrôles à la
+fois — potards, faders, molettes, pads, boutons — et écrit un fichier de profil
+que MiniHub sait charger. **La photo ne quitte jamais le navigateur** : elle sert
+de fond pour poser les coordonnées, rien n'est envoyé nulle part.
+
+Ses styles vivent dans `styles/site.css`, contenus sous `.builder`, qui
+redéfinit ses propres jetons et n'emprunte rien à la coquille. Une seule feuille
+pour tout le site, donc, comme l'exige le vérificateur.
+
+Pour l'essayer, un serveur local suffit — **Web MIDI exige `localhost`, pas
+`file://`** :
+
+```bash
+python -m http.server 8765
+```
 
 ## Déploiement
 

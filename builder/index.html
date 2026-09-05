@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MiniHub — Controller Builder</title>
+<meta name="description" content="Map your MIDI controller in the browser: show it one family of controls at a time, place them on a photo of your own keyboard, and download the profile MiniHub reads.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; font-src 'self'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0e1013">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 4 26.4 10 26.4 22 16 28 5.6 22 5.6 10Z" fill="none" stroke="#3a5a9f" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="16" cy="4" r="3.4" fill="#0e1013" stroke="#4f8cff" stroke-width="2.2"/>
+        <circle cx="26.4" cy="22" r="3.4" fill="#0e1013" stroke="#e0b04c" stroke-width="2.2"/>
+        <circle cx="5.6" cy="22" r="3.4" fill="#0e1013" stroke="#c77dff" stroke-width="2.2"/>
+      </svg>
+      MiniHub
+    </a>
+    <nav class="nav">
+      <a href="/#patch-bay">Patch Bay</a>
+      <a href="/#features" class="optional">Features</a>
+      <a href="/#approach" class="optional">Approach</a>
+      <a href="/setups/">Setups</a>
+      <a href="/builder/">Builder</a>
+      <a href="/#download">Download</a>
+      <a href="https://github.com/DavidfromMonaco/minihub">Source</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="builder">
+  <div>
+    <h1>The Builder knows nothing</h1>
+    <p class="lede">It holds no list of controls. You show it one family at a time, and it learns what your keyboard has.</p>
+  </div>
+
+  <div class="cols">
+    <div class="card">
+      <div class="card-h">
+        <h2>Your photo</h2>
+        <button id="change" hidden>Change photo</button>
+      </div>
+      <input type="file" id="pick" accept="image/*">
+      <div class="drop" id="drop">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#4fd1ff" stroke-width="1.3">
+          <rect x="3" y="4" width="18" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/>
+          <path d="M3 15.5l4.5-4 3.5 3 4-5 6 6.5"/>
+        </svg>
+        <b>Drop a photo of <em>your</em> keyboard here</b>
+        <span>Seen from above, taken with your phone. It never leaves this browser.</span>
+      </div>
+      <div class="scene" id="scene" hidden>
+        <img id="photo" alt="Your controller, seen from above">
+        <svg class="ov" id="ov" preserveAspectRatio="none"></svg>
+      </div>
+    </div>
+
+    <div class="card panel">
+      <p class="why" id="why">acquiring the photo</p>
+      <div class="say" id="say">Load a photo of your keyboard</div>
+      <div class="heard" id="heard">&nbsp;</div>
+      <div class="steps" id="steps"></div>
+      <div class="next" id="next" hidden>
+        <button class="go" id="go"></button>
+        <button class="mute" id="mute" title="A control that transmits nothing — Oct+, a local function">+ silent</button>
+      </div>
+      <div class="who" id="who">
+        <div class="device" id="device"></div>
+        <button id="edit" class="edit">Edit device details</button>
+        <div class="fix" id="fix" hidden>
+          <label for="vendor">manufacturer</label>
+          <input id="vendor" placeholder="Arturia" autocomplete="off">
+          <label for="model">model</label>
+          <input id="model" placeholder="MiniLab 3" autocomplete="off">
+        </div>
+        <label for="author">your nickname <span id="authorWhy">— so people can find your other setups</span></label>
+        <input id="author" placeholder="anything you like" autocomplete="off">
+      </div>
+      <button class="commit" id="commit" disabled>Commit setup</button>
+      <div class="raw" id="raw">nothing received yet</div>
+      <div class="foot">
+        <span class="cnt"><b id="n">0</b> controls</span>
+        <span class="acts">
+          <button id="back" disabled>← Step back</button>
+          <button id="reset">Clear all</button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card panel">
+    <div class="card-h flush">
+      <h2>What this builds</h2>
+      <button id="align" aria-pressed="false" disabled>Align rows</button>
+    </div>
+    <p class="note">Drawn <b>without the photo</b>, from only what you showed it.
+      <span id="alignNote"></span></p>
+    <svg id="bp" viewBox="0 0 520 220"></svg>
+  </div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <p>MiniHub — a musical sandbox for Windows.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/DavidfromMonaco/minihub">Source</a></li>
+        <li><a href="https://github.com/DavidfromMonaco/minihub/blob/master/ARCHITECTURE.md">Architecture</a></li>
+        <li><a href="https://github.com/DavidfromMonaco/minihub/blob/master/LICENSE">Licence</a></li>
+      </ul>
+    </div>
+    <p class="disclaimer">
+      MiniHub is an independent project and is not affiliated with, endorsed by or
+      sponsored by Arturia. MiniLab is a trademark of Arturia. This site sets no
+      cookies, runs no scripts and collects nothing.
+    </p>
+  </div>
+</footer>
+
+<script src="/builder/builder.js"></script>
+</body>
+</html>

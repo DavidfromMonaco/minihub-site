@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MiniHub — Setups</title>
+<meta name="description" content="Published controller setups for MiniHub: plug your keyboard in, let the page recognise it, and download the file that makes MiniHub speak its language.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0e1013">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 4 26.4 10 26.4 22 16 28 5.6 22 5.6 10Z" fill="none" stroke="#3a5a9f" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="16" cy="4" r="3.4" fill="#0e1013" stroke="#4f8cff" stroke-width="2.2"/>
+        <circle cx="26.4" cy="22" r="3.4" fill="#0e1013" stroke="#e0b04c" stroke-width="2.2"/>
+        <circle cx="5.6" cy="22" r="3.4" fill="#0e1013" stroke="#c77dff" stroke-width="2.2"/>
+      </svg>
+      MiniHub
+    </a>
+    <nav class="nav">
+      <a href="/#patch-bay">Patch Bay</a>
+      <a href="/#features" class="optional">Features</a>
+      <a href="/#approach" class="optional">Approach</a>
+      <a href="/setups/">Setups</a>
+      <a href="/builder/">Builder</a>
+      <a href="/#download">Download</a>
+      <a href="https://github.com/DavidfromMonaco/minihub">Source</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="section" id="setups">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Setups</p>
+        <h2>Plug in. Be recognised. Download.</h2>
+        <p class="lede">
+          A <strong>setup</strong> says what a controller sends and where its
+          controls sit on it. MiniHub reads one and draws your keyboard from it.
+          Mapping a device is paid <em>once per model</em> — by whoever gets there
+          first, and never again by anyone who owns the same hardware.
+        </p>
+      </div>
+
+      <div class="recognise" id="recognise">
+        <p class="recognise-state" id="recognise-state">
+          This page can listen for the controller you have plugged in and tell you
+          whether anyone has mapped it. Nothing is recorded and nothing is sent:
+          the matching happens here, in your browser.
+        </p>
+        <p class="recognise-actions">
+          <button class="btn" id="recognise-go" type="button">Look for my keyboard</button>
+        </p>
+        <p class="caption" id="recognise-note">Needs Web MIDI · Chrome, Edge and other Chromium browsers · one permission prompt, no sysex</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="published">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Published</p>
+        <h2>What has been mapped so far.</h2>
+        <p class="lede">
+          Each card is a file, drawn from its own contents: the schematic below is
+          generated from the coordinates in the setup, not illustrated by hand. A
+          setup names the hardware, never the person — two people mapping one
+          keyboard produce two files that MiniHub can swap without cutting a
+          single cable.
+        </p>
+      </div>
+
+      <div class="setups">
+<!-- setups:start · genere par scripts/build-setups.mjs -->
+      <article class="setup" id="setup-arturia-beatstep" data-setup="arturia-beatstep.json">
+        <div class="setup-head">
+          <div>
+            <h3>Arturia BeatStep</h3>
+            <p class="setup-id"><code>arturia-beatstep</code> · revision 1 · no nickname given</p>
+          </div>
+          <p class="setup-match" hidden>Your keyboard</p>
+        </div>
+
+        <svg class="blueprint" viewBox="0 0 419 174" role="img"
+             aria-label="Schematic of the Arturia BeatStep: 17 knobs, 16 pads, 8 buttons, each drawn where it sits on the device."><circle cx="91" cy="22" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="91" y1="19.58" x2="91" y2="14.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="133" cy="22" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="133" y1="19.58" x2="133" y2="14.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="174" cy="22" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="174" y1="19.58" x2="174" y2="14.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="216" cy="22" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="216" y1="19.58" x2="216" y2="14.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="258" cy="22" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="258" y1="19.58" x2="258" y2="14.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="300" cy="22" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="300" y1="19.58" x2="300" y2="14.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="342" cy="22" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="342" y1="19.58" x2="342" y2="14.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="384" cy="22" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="384" y1="19.58" x2="384" y2="14.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="91" cy="58" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="91" y1="55.58" x2="91" y2="50.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="133" cy="58" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="133" y1="55.58" x2="133" y2="50.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="174" cy="58" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="174" y1="55.58" x2="174" y2="50.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="216" cy="58" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="216" y1="55.58" x2="216" y2="50.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="258" cy="58" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="258" y1="55.58" x2="258" y2="50.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="300" cy="58" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="300" y1="55.58" x2="300" y2="50.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="342" cy="58" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="342" y1="55.58" x2="342" y2="50.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="383" cy="58" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="383" y1="55.58" x2="383" y2="50.75" stroke="#4fd1ff" stroke-width="1.15"/><circle cx="42" cy="38" r="8.86" fill="#141922" stroke="#4fd1ff" stroke-width="1.15"/><line x1="42" y1="35.58" x2="42" y2="30.75" stroke="#4fd1ff" stroke-width="1.15"/><rect x="80.91" y="85.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="120.91" y="85.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="161.91" y="85.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="205.91" y="85.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="243.91" y="85.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="286.91" y="85.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="328.91" y="85.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="367.91" y="85.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="80.91" y="127.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="120.91" y="127.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="162.91" y="127.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="205.91" y="127.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="243.91" y="127.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="286.91" y="127.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="328.91" y="127.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="368.91" y="127.53" width="24.17" height="20.95" rx="2.69" fill="#141922" stroke="#ff5fb0" stroke-width="1.15"/><rect x="19.94" y="82.36" width="16.12" height="11.28" rx="2.01" fill="#141922" stroke="#a9b4c6" stroke-width="1.01"/><rect x="32.94" y="82.36" width="16.12" height="11.28" rx="2.01" fill="#141922" stroke="#a9b4c6" stroke-width="1.01"/><rect x="19.94" y="101.36" width="16.12" height="11.28" rx="2.01" fill="#141922" stroke="#a9b4c6" stroke-width="1.01"/><rect x="32.94" y="101.36" width="16.12" height="11.28" rx="2.01" fill="#141922" stroke="#a9b4c6" stroke-width="1.01"/><rect x="19.94" y="122.36" width="16.12" height="11.28" rx="2.01" fill="#141922" stroke="#a9b4c6" stroke-width="1.01"/><rect x="32.94" y="122.36" width="16.12" height="11.28" rx="2.01" fill="#141922" stroke="#a9b4c6" stroke-width="1.01"/><rect x="19.94" y="142.36" width="16.12" height="11.28" rx="2.01" fill="#141922" stroke="#a9b4c6" stroke-width="1.01"/><rect x="32.94" y="142.36" width="16.12" height="11.28" rx="2.01" fill="#141922" stroke="#a9b4c6" stroke-width="1.01"/></svg>
+
+        <dl class="setup-facts">
+          <div><dt>Controls</dt><dd>41<small>17 knobs, 16 pads, 8 buttons</small></dd></div>
+          <div><dt>Answered</dt><dd>32<small>9 declared silent</small></dd></div>
+          <div><dt>Written</dt><dd>2026-09-05<small>format version 1</small></dd></div>
+        </dl>
+
+        <p class="setup-ports-label">Recognised by the port it announces</p>
+        <ul class="setup-ports">
+            <li><code>BeatStep</code> <span class="role">performance</span></li>
+        </ul>
+
+        <p class="setup-actions">
+          <a class="btn" href="/setups/arturia-beatstep.json" download>Download arturia-beatstep.json</a>
+        </p>
+      </article>
+
+      <article class="setup" id="setup-minilab-3" data-setup="minilab-3.json">
+        <div class="setup-head">
+          <div>
+            <h3>Arturia MiniLab 3</h3>
+            <p class="setup-id"><code>minilab-3</code> · revision 1 · no nickname given</p>
+          </div>
+          <p class="setup-match" hidden>Your keyboard</p>
+        </div>
+
+        <svg class="blueprint" viewBox="0 0 480 180" role="img"
+             aria-label="Schematic of the Arturia MiniLab 3: 8 knobs, 4 faders, 1 main encoder, 1 encoder click, 2 touch strips, 4 utility keys, 8 pads, 1 display, each drawn where it sits on the device."><circle cx="155" cy="43" r="10.15" fill="#141922" stroke="#4fd1ff" stroke-width="1.32"/><line x1="155" y1="40.23" x2="155" y2="34.69" stroke="#4fd1ff" stroke-width="1.32"/><circle cx="207" cy="43" r="10.15" fill="#141922" stroke="#4fd1ff" stroke-width="1.32"/><line x1="207" y1="40.23" x2="207" y2="34.69" stroke="#4fd1ff" stroke-width="1.32"/><circle cx="259" cy="43" r="10.15" fill="#141922" stroke="#4fd1ff" stroke-width="1.32"/><line x1="259" y1="40.23" x2="259" y2="34.69" stroke="#4fd1ff" stroke-width="1.32"/><circle cx="311" cy="43" r="10.15" fill="#141922" stroke="#4fd1ff" stroke-width="1.32"/><line x1="311" y1="40.23" x2="311" y2="34.69" stroke="#4fd1ff" stroke-width="1.32"/><circle cx="155" cy="91" r="10.15" fill="#141922" stroke="#4fd1ff" stroke-width="1.32"/><line x1="155" y1="88.23" x2="155" y2="82.69" stroke="#4fd1ff" stroke-width="1.32"/><circle cx="207" cy="91" r="10.15" fill="#141922" stroke="#4fd1ff" stroke-width="1.32"/><line x1="207" y1="88.23" x2="207" y2="82.69" stroke="#4fd1ff" stroke-width="1.32"/><circle cx="259" cy="91" r="10.15" fill="#141922" stroke="#4fd1ff" stroke-width="1.32"/><line x1="259" y1="88.23" x2="259" y2="82.69" stroke="#4fd1ff" stroke-width="1.32"/><circle cx="311" cy="91" r="10.15" fill="#141922" stroke="#4fd1ff" stroke-width="1.32"/><line x1="311" y1="88.23" x2="311" y2="82.69" stroke="#4fd1ff" stroke-width="1.32"/><rect x="353.46" y="39.92" width="3.08" height="46.15" rx="1.54" fill="#2a3342"/><rect x="348.54" y="59.31" width="12.92" height="7.38" rx="1.85" fill="#141922" stroke="#ffc861" stroke-width="1.32"/><rect x="390.46" y="39.92" width="3.08" height="46.15" rx="1.54" fill="#2a3342"/><rect x="385.54" y="59.31" width="12.92" height="7.38" rx="1.85" fill="#141922" stroke="#ffc861" stroke-width="1.32"/><rect x="427.46" y="39.92" width="3.08" height="46.15" rx="1.54" fill="#2a3342"/><rect x="422.54" y="59.31" width="12.92" height="7.38" rx="1.85" fill="#141922" stroke="#ffc861" stroke-width="1.32"/><rect x="464.46" y="39.92" width="3.08" height="46.15" rx="1.54" fill="#2a3342"/><rect x="459.54" y="59.31" width="12.92" height="7.38" rx="1.85" fill="#141922" stroke="#ffc861" stroke-width="1.32"/><circle cx="122" cy="68" r="10.15" fill="#141922" stroke="#4fd1ff" stroke-width="1.32"/><line x1="122" y1="65.23" x2="122" y2="59.69" stroke="#4fd1ff" stroke-width="1.32"/><rect x="112.77" y="77.54" width="18.46" height="12.92" rx="2.31" fill="#141922" stroke="#a9b4c6" stroke-width="1.15"/><rect x="14.15" y="81.92" width="15.69" height="46.15" rx="7.85" fill="#141922" stroke="#7ee787" stroke-width="1.32"/><rect x="45.15" y="81.92" width="15.69" height="46.15" rx="7.85" fill="#141922" stroke="#7ee787" stroke-width="1.32"/><rect x="28.77" y="18.54" width="18.46" height="12.92" rx="2.31" fill="#141922" stroke="#a9b4c6" stroke-width="1.15"/><rect x="76.15" y="114" width="27.69" height="24" rx="3.08" fill="#141922" stroke="#ff5fb0" stroke-width="1.32"/><rect x="124.15" y="114" width="27.69" height="24" rx="3.08" fill="#141922" stroke="#ff5fb0" stroke-width="1.32"/><rect x="172.15" y="114" width="27.69" height="24" rx="3.08" fill="#141922" stroke="#ff5fb0" stroke-width="1.32"/><rect x="220.15" y="114" width="27.69" height="24" rx="3.08" fill="#141922" stroke="#ff5fb0" stroke-width="1.32"/><rect x="268.15" y="114" width="27.69" height="24" rx="3.08" fill="#141922" stroke="#ff5fb0" stroke-width="1.32"/><rect x="316.15" y="114" width="27.69" height="24" rx="3.08" fill="#141922" stroke="#ff5fb0" stroke-width="1.32"/><rect x="364.15" y="114" width="27.69" height="24" rx="3.08" fill="#141922" stroke="#ff5fb0" stroke-width="1.32"/><rect x="412.15" y="114" width="27.69" height="24" rx="3.08" fill="#141922" stroke="#ff5fb0" stroke-width="1.32"/><rect x="56.77" y="18.54" width="18.46" height="12.92" rx="2.31" fill="#141922" stroke="#a9b4c6" stroke-width="1.15"/><rect x="28.77" y="38.54" width="18.46" height="12.92" rx="2.31" fill="#141922" stroke="#a9b4c6" stroke-width="1.15"/><rect x="56.77" y="38.54" width="18.46" height="12.92" rx="2.31" fill="#141922" stroke="#a9b4c6" stroke-width="1.15"/><rect x="87.69" y="15.23" width="40.62" height="29.54" rx="2.31" fill="#0a0d12" stroke="#5d6879" stroke-width="1.03"/></svg>
+
+        <dl class="setup-facts">
+          <div><dt>Controls</dt><dd>29<small>8 knobs, 4 faders, 1 main encoder, 1 encoder click, 2 touch strips, 4 utility keys, 8 pads, 1 display</small></dd></div>
+          <div><dt>Answered</dt><dd>25<small>every one observed</small></dd></div>
+          <div><dt>Written</dt><dd>2026-09-04<small>format version 1</small></dd></div>
+        </dl>
+
+        <p class="setup-ports-label">Recognised by the port it announces</p>
+        <ul class="setup-ports">
+            <li><code>Minilab3 MIDI</code> <span class="role">performance</span></li>
+            <li><code>Minilab3 ALV</code> <span class="role">performance</span></li>
+            <li><code>Minilab3 MCU/HUI</code> <span class="role">control-surface</span></li>
+            <li><code>Minilab3 DIN THRU</code> <span class="role">ignore</span></li>
+        </ul>
+
+        <p class="setup-actions">
+          <a class="btn" href="/setups/minilab-3.json" download>Download minilab-3.json</a>
+        </p>
+      </article>
+      <!-- setups:end -->
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="loading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Once downloaded</p>
+        <h2>Three steps, and the window reloads.</h2>
+      </div>
+
+      <dl class="refusals">
+        <div>
+          <dt>1 · Open your controller's page</dt>
+          <dd>In MiniHub's sidebar, under <strong>System</strong>. That is where a
+              keyboard is loaded and unloaded — not in Settings, which is about
+              where files are written.</dd>
+        </div>
+        <div>
+          <dt>2 · Import a profile…</dt>
+          <dd>That is the button, word for word. The file you downloaded is called
+              a <em>setup</em> here and a <em>profile</em> in the format MiniHub
+              reads; they are the same thing.</dd>
+        </div>
+        <div>
+          <dt>3 · Load it</dt>
+          <dd>The window reloads, because the controller's identity is fixed
+              before the first line of the interface runs. Your project, its
+              cables and its nodes come back as they were.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="publishing">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Yours</p>
+        <h2>Mapped a keyboard nobody has?</h2>
+        <p class="lede">
+          The Builder writes the file in your browser, from your own gestures and
+          a photo of your own device. Sending it here is what turns one evening of
+          calibration into something every other owner skips.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="/builder/">Open the Builder</a>
+        <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub-site/issues">Send a setup</a>
+      </div>
+      <p class="caption">For now a setup arrives by hand, through the issues of this site's repository · no account, no queue and no moderation are planned: that is what the rest of this design owes</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <p>MiniHub — a musical sandbox for Windows.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/DavidfromMonaco/minihub">Source</a></li>
+        <li><a href="https://github.com/DavidfromMonaco/minihub/blob/master/ARCHITECTURE.md">Architecture</a></li>
+        <li><a href="https://github.com/DavidfromMonaco/minihub/blob/master/LICENSE">Licence</a></li>
+      </ul>
+    </div>
+    <p class="disclaimer">
+      MiniHub is an independent project and is not affiliated with, endorsed by or
+      sponsored by Arturia. MiniLab is a trademark of Arturia. This site sets no
+      cookies, runs no scripts and collects nothing.
+    </p>
+  </div>
+</footer>
+
+<script type="module" src="/setups/setups.js"></script>
+</body>
+</html>

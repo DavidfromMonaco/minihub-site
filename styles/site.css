@@ -569,3 +569,339 @@ h1, h2, h3 {
   font-size: 0.75rem;
   line-height: 1.75;
 }
+
+/* --- La page des setups ------------------------------------------------- */
+
+/* Vocabulaire de la coquille, pas de facade : ces cartes sont des documents,
+   et le seul dessin qu'elles portent vient du fichier qu'elles decrivent. */
+
+.recognise {
+  margin-block-start: 2rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--app);
+}
+.recognise-state {
+  margin: 0;
+  max-width: var(--measure);
+  color: var(--dim);
+  font-size: 1.0625rem;
+}
+.recognise-state strong { color: var(--text); font-weight: 600; }
+.recognise-state code {
+  font-family: var(--mono);
+  font-size: 0.875em;
+  color: var(--text);
+}
+.recognise-state a { color: var(--accent); }
+.recognise-actions { margin: 1.25rem 0 0; }
+.recognise .caption { margin-block-start: 0.9rem; }
+
+.setups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(26rem, 100%), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: start;
+}
+
+.setup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1rem, 2.2vw, 1.5rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--raised);
+}
+/* Reconnu : l'accent est le meme bleu que le cable MIDI, parce que c'est le
+   port MIDI qui vient de repondre. */
+.setup.is-match {
+  border-color: var(--midi);
+  box-shadow: 0 0 0 1px var(--midi) inset;
+}
+.setup-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+}
+.setup-head h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+.setup-id {
+  margin: 0.35rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--faint);
+}
+.setup-id code {
+  font-family: var(--mono);
+  color: var(--dim);
+}
+.setup-id strong { color: var(--text); font-weight: 500; }
+.setup-match {
+  flex: none;
+  margin: 0;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--midi);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--midi);
+}
+
+/* Le schema est le fichier, dessine. Il tient dans la carte a n'importe quelle
+   largeur : ses coordonnees sont celles du materiel, pas des pixels d'ecran. */
+.blueprint {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  padding: clamp(0.5rem, 1.5vw, 0.9rem);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 6px);
+  background: #0a0c10;
+}
+
+.setup-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 0;
+}
+.setup-facts dt {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.setup-facts dd {
+  margin: 0.3rem 0 0;
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+}
+.setup-facts dd small {
+  display: block;
+  margin-block-start: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--faint);
+}
+
+.setup-ports-label {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.setup-ports {
+  margin: -0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8125rem;
+}
+.setup-ports code {
+  font-family: var(--mono);
+  color: var(--text);
+}
+.setup-ports .role {
+  color: var(--faint);
+  font-size: 0.75rem;
+}
+.setup-actions { margin: 0.25rem 0 0; }
+
+@media (max-width: 480px) {
+  .setup-facts { grid-template-columns: 1fr; }
+  .setup-head { flex-direction: column; }
+}
+
+/* --- Le Builder --------------------------------------------------------- */
+
+/* Contenu, pas superpose. `.builder` redefinit son propre jeu de jetons et
+   n'emprunte rien a la coquille au-dessus : c'est la meme regle que
+   base.css / omni-pearl.css dans l'application (DECISIONS D-012), appliquee
+   ici dans la feuille unique qu'impose la regle 4 de check.mjs.
+
+   Ses couleurs ne sont pas decoratives non plus : --knob, --pad, --fader et
+   --wheel sont les familles du parcours, comme --midi, --audio et --control
+   sont les trois types de cable. Deux vocabulaires, deux surfaces.
+
+   Seules les polices sont reprises : le site s'interdit toute ressource
+   distante, donc Geist remplace IBM Plex, qui venait de Google Fonts. */
+
+.builder {
+  --ground: #0b0e13;
+  --panel: #141922;
+  --panel-2: #1b212c;
+  --edge: #2a3342;
+  --edge-soft: #212936;
+  --ink: #e7ecf5;
+  --dim: #8e9ab0;
+  --faint: #5d6879;
+  --say: #ffffff;
+  --why: #7f8db0;
+  --knob: #4fd1ff;
+  --pad: #ff5fb0;
+  --fader: #ffc861;
+  --wheel: #7ee787;
+  --button: #a9b4c6;
+  --ok: #7ee787;
+
+  max-width: 1060px;
+  margin-inline: auto;
+  padding: 26px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.builder h1 { margin: 0; font-size: 25px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+.builder .lede { margin: 6px 0 0; color: var(--dim); font-size: 15.5px; max-width: 60ch; }
+
+.builder .cols { display: grid; grid-template-columns: 1fr 330px; gap: 16px; align-items: start; }
+@media (max-width: 900px) { .builder .cols { grid-template-columns: 1fr; } }
+.builder .card { background: var(--panel); border: 1px solid var(--edge); border-radius: 10px; }
+.builder .card-h {
+  display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 13px;
+  border-bottom: 1px solid var(--edge-soft); background: var(--panel-2); border-radius: 10px 10px 0 0;
+}
+.builder .card-h h2 {
+  margin: 0; font-size: 11.5px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.09em; color: var(--dim); line-height: 1.5;
+}
+/* L'entete du bloc « What this builds » remonte sur le padding de sa carte. */
+.builder .card-h.flush { margin: -16px -16px 0; }
+
+/* Empty on arrival, and it has to look empty: a sample device would be taken for
+   the user's own and would quietly ruin every position they place. */
+.builder .drop {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  min-height: 300px; padding: 34px 26px; text-align: center; cursor: pointer;
+  border: 2px dashed var(--edge); border-radius: 0 0 10px 10px; background: #080b10;
+  transition: border-color 0.15s, background 0.15s;
+}
+.builder .drop:hover, .builder .drop.over { border-color: var(--knob); background: #0c1219; }
+.builder .drop svg { opacity: 0.55; }
+.builder .drop b { font-size: 18px; font-weight: 600; color: var(--ink); }
+.builder .drop span { color: var(--dim); font-size: 14px; max-width: 42ch; }
+.builder .drop em { font-style: normal; color: var(--knob); }
+.builder .scene {
+  position: relative; line-height: 0; background: #06080b; cursor: not-allowed;
+  border-radius: 0 0 10px 10px; overflow: hidden;
+}
+.builder .scene.armed { cursor: crosshair; }
+.builder .scene img { display: block; width: 100%; height: auto; border-radius: 0; }
+.builder .scene svg.ov { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.builder .scene.grab { cursor: grab; }
+.builder .scene.grabbing { cursor: grabbing; }
+
+/* Where you are, quietly. What to do, loudly. */
+.builder .panel { padding: 16px; display: flex; flex-direction: column; gap: 0; }
+.builder .why {
+  font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.11em;
+  text-transform: uppercase; color: var(--why); margin: 0 0 10px; display: flex; align-items: center; gap: 8px;
+}
+.builder .why::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 99px; background: currentColor; }
+.builder .say {
+  font-size: 23px; font-weight: 700; line-height: 1.22; color: var(--say);
+  letter-spacing: -0.015em; text-wrap: balance;
+}
+.builder .say em { font-style: normal; color: var(--knob); }
+.builder .heard { margin-top: 11px; font-family: var(--mono); font-size: 12.5px; color: var(--dim); min-height: 1.4em; }
+.builder .heard b { color: var(--ink); font-weight: 500; }
+.builder .heard.warn { color: var(--fader); }
+
+.builder .steps { display: flex; gap: 4px; margin-top: 14px; cursor: pointer; }
+.builder .steps i { flex: 1; height: 3px; border-radius: 2px; background: var(--edge-soft); transition: height 0.12s; }
+.builder .steps i.done { background: var(--faint); }
+.builder .steps i.now { background: currentColor; height: 5px; }
+.builder .steps:hover i { height: 5px; }
+
+.builder .kb {
+  margin-top: 12px; font-family: var(--mono); font-size: 11.5px; color: var(--wheel);
+  border: 1px solid rgb(126 231 135 / 0.28); background: rgb(126 231 135 / 0.07);
+  border-radius: 7px; padding: 7px 10px;
+}
+.builder .next { margin-top: 14px; display: flex; gap: 8px; }
+.builder button {
+  font: inherit; font-size: 12.5px; padding: 8px 12px; border-radius: 7px; cursor: pointer;
+  border: 1px solid var(--edge); background: transparent; color: var(--dim);
+}
+.builder button:hover:not(:disabled) { border-color: var(--faint); color: var(--ink); }
+.builder button:disabled { opacity: 0.32; cursor: not-allowed; }
+.builder button:focus-visible { outline: 2px solid var(--knob); outline-offset: 2px; }
+.builder button.go { flex: 1; font-size: 13.5px; font-weight: 600; color: #04222e; }
+.builder button.mute { flex: none; }
+.builder .foot {
+  margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--edge-soft);
+  display: flex; justify-content: space-between; align-items: center; gap: 9px; flex-wrap: wrap;
+}
+.builder .cnt { font-family: var(--mono); font-size: 11.5px; color: var(--dim); }
+.builder .cnt b { color: var(--ink); font-weight: 600; font-size: 16px; }
+.builder .acts { display: flex; gap: 7px; }
+.builder #align[aria-pressed="true"] { border-color: var(--knob); color: var(--knob); background: rgb(79 209 255 / 0.09); }
+.builder #alignNote { color: var(--faint); }
+.builder #bp {
+  width: 100%; height: auto; background: #070a0e; border: 1px solid var(--edge);
+  border-radius: 8px; margin-top: 10px;
+}
+
+.builder .device {
+  font-family: var(--mono); font-size: 11.5px; line-height: 1.75;
+  border: 1px solid var(--edge); border-radius: 8px; padding: 9px 11px; background: #070a0e; color: var(--faint);
+}
+.builder .device b { color: var(--ink); font-weight: 500; }
+.builder .device u { text-decoration: none; color: var(--ok); }
+.builder .device i { font-style: normal; color: var(--fader); }
+/* Posee par le script dans une chaine HTML : un attribut style y serait
+   refuse par la CSP « style-src 'self' », sans message et sans recours. */
+.builder .faint { color: var(--faint); }
+.builder .edit { align-self: flex-start; font-size: 11.5px; padding: 5px 9px; }
+.builder .fix { display: flex; flex-direction: column; gap: 6px; }
+.builder .fix label, .builder .who label {
+  font-family: var(--mono); font-size: 10.5px; text-transform: uppercase;
+  letter-spacing: 0.09em; color: var(--faint);
+}
+.builder .fix input, .builder .who input {
+  font: inherit; font-size: 13.5px; background: #070a0e; color: var(--ink);
+  border: 1px solid var(--edge); border-radius: 7px; padding: 8px 10px; width: 100%;
+}
+.builder .fix input:focus, .builder .who input:focus { outline: none; border-color: var(--knob); }
+.builder .who { margin-top: 14px; display: none; flex-direction: column; gap: 7px; }
+.builder .who.on { display: flex; }
+.builder .who label span { text-transform: none; letter-spacing: 0; color: var(--faint); font-size: 10px; }
+.builder .who label span.got { color: var(--ok); }
+
+.builder .raw {
+  margin-top: 10px; font-family: var(--mono); font-size: 10.5px; color: var(--faint);
+  border-top: 1px dashed var(--edge-soft); padding-top: 8px; line-height: 1.7; min-height: 2.4em;
+}
+.builder .raw b { color: var(--dim); font-weight: 500; }
+.builder .raw u { text-decoration: none; color: var(--knob); }
+.builder .commit {
+  margin-top: 14px; width: 100%; font-size: 14px; font-weight: 600; padding: 12px;
+  border-radius: 8px; border: 1px solid var(--edge); background: var(--panel-2); color: var(--faint);
+}
+.builder .commit:enabled { background: var(--ok); border-color: var(--ok); color: #04220c; cursor: pointer; }
+.builder .commit:enabled:hover { background: #96f09e; }
+.builder .commit:disabled { opacity: 1; cursor: not-allowed; }
+.builder .note { color: var(--dim); font-size: 14px; margin: 14px 0 0; max-width: 66ch; }
+.builder .note b { color: var(--ink); font-weight: 600; }
+.builder input[type="file"] { display: none; }
+/* An explicit display: on .drop and .next would beat the [hidden] attribute,
+   which is how the upload box stayed on screen underneath the loaded photo. */
+.builder [hidden] { display: none !important; }
