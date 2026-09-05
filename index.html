@@ -33,6 +33,7 @@
       <a href="/setups/">Setups</a>
       <a href="/builder/">Builder</a>
       <a href="/#download">Download</a>
+      <a href="/#getting-started">Get started</a>
       <a href="https://github.com/DavidfromMonaco/minihub">Source</a>
     </nav>
   </div>
@@ -331,6 +332,84 @@
         <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.1.0/MiniHub-0.1.0-portable.zip">Get the portable ZIP</a>
       </div>
       <p class="caption">Not code-signed, so SmartScreen will ask — More info, then Run anyway. <a href="https://github.com/DavidfromMonaco/minihub/releases/tag/v0.1.0">Release notes and SHA-256 sums</a> · <a href="https://github.com/DavidfromMonaco/minihub#build-and-run">Build it from source instead</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="getting-started">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Getting started</p>
+        <h2>From download to your own keyboard, in five steps.</h2>
+        <p class="lede">
+          A MiniLab 3 needs none of this past step two — its setup ships inside
+          MiniHub. The rest is for every other controller, and it is a one-time
+          evening: once the file exists, plugging in is all there is.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <div class="step-body">
+            <h3>Download MiniHub</h3>
+            <p>Installer or portable ZIP, from <a href="/#download">the section
+               above</a> — same build, your call. Windows will say it protected
+               your PC, because the executable is not code-signed: choose
+               <em>More info</em>, then <em>Run anyway</em>.</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="step-body">
+            <h3>Install it, or unzip it</h3>
+            <p>The installer needs no administrator prompt and puts MiniHub in
+               your Start menu. The ZIP wants unzipping anywhere, then
+               <code>MiniHub.exe</code>. Neither writes your settings, projects
+               or recordings inside the application folder, so you can change
+               your mind later and lose nothing.</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="step-body">
+            <h3>Plug your controller in</h3>
+            <p>If it is an Arturia MiniLab 3, you are done — its setup ships with
+               MiniHub, and the Patch Bay already draws the faceplate. Any other
+               controller needs a setup file: what it sends, and where its
+               controls sit. That is the next step.</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="step-body">
+            <h3>Look for your setup</h3>
+            <p>Open <a href="/setups/">Setups</a>, keyboard plugged in, and press
+               <em>Look for my keyboard</em>: the page reads the MIDI port and
+               tells you whether someone has already mapped your device. If so,
+               download the file — you are done mapping.</p>
+            <p class="step-note">Needs Web MIDI — Chrome, Edge or another
+               Chromium browser.</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="step-body">
+            <h3>Nobody mapped it? Build it, then load it</h3>
+            <p>The <a href="/builder/">Builder</a> writes that file from your own
+               keyboard: a photo of it, then one family of controls at a time —
+               turn a knob, hit a pad — and <em>Commit setup</em> drops a JSON
+               file in your downloads. The photo never leaves your browser.</p>
+            <p>In MiniHub, open the page named after your device, find the
+               <strong>Profile</strong> panel and press <em>Import a profile…</em>
+               there. The window reloads, and from then on MiniHub draws and
+               decodes your controller from your file.</p>
+            <figure class="step-shot">
+              <img src="img/profile-import.png" width="468" height="302"
+                   alt="The Profile panel in MiniHub: it is running BeatStep and MiniLab 3, listing MiniLab 3 as shipped with MiniHub with 29 controls and Arturia BeatStep with 41 controls from arturia-beatstep.json, each marked Loaded with an Unload button, above an Import a profile button and a note that loading or unloading a controller reloads the window.">
+            </figure>
+            <p class="caption">Two controllers loaded at once · each one gets its own page</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 

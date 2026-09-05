@@ -905,3 +905,86 @@ h1, h2, h3 {
 /* An explicit display: on .drop and .next would beat the [hidden] attribute,
    which is how the upload box stayed on screen underneath the loaded photo. */
 .builder [hidden] { display: none !important; }
+
+/* --- Les etapes de demarrage -------------------------------------------- */
+/* Une liste ordonnee et pas des cartes : l'ordre EST l'information. Le numero
+   est dessine par un compteur CSS plutot que par la puce native, parce que la
+   puce ne peut pas etre alignee sur la premiere ligne du titre. */
+
+.steps {
+  counter-reset: step;
+  display: grid;
+  gap: 1px;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding: 0;
+  list-style: none;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.steps > li {
+  counter-increment: step;
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.9rem, 2vw, 1.3rem);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background: var(--ground);
+}
+.steps > li::before {
+  content: counter(step);
+  flex: none;
+  inline-size: 2.1rem;
+  block-size: 2.1rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+.step-body {
+  flex: 1;
+  min-inline-size: 0;
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+}
+.step-body h3 {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  padding-block-start: 0.2rem;
+}
+.step-body p { margin: 0; color: var(--dim); max-inline-size: var(--measure); }
+.step-body .step-note {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+}
+.step-body .caption { margin: 0; }
+
+/* La capture fait 468 px de large : .screen l'etirerait a la largeur du
+   panneau (min-inline-size: 34rem) et la rendrait floue. Ici elle garde sa
+   taille, et ne depasse jamais son conteneur. */
+.step-shot {
+  margin: 0.3rem 0 0;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--app);
+  overflow-x: auto;
+}
+.step-shot img {
+  display: block;
+  /* Sa taille reelle, jamais moins : reduite a la largeur d'un telephone, une
+     capture d'interface devient un rectangle gris ou plus rien ne se lit. Le
+     conteneur defile a la place -- le meme arbitrage que .screen. */
+  min-inline-size: 468px;
+  block-size: auto;
+  border-radius: calc(var(--radius) - 8px);
+}
