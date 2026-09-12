@@ -165,6 +165,59 @@
     </div>
   </section>
 
+  <section class="section" id="arpeggiator">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Arpeggiator</p>
+        <h2>A preset to start from. A grid to disagree with.</h2>
+        <p class="lede">
+          Wire it between your keyboard and a VST and it plays what you hold. Six
+          modes &mdash; Up, Down, Up&nbsp;/&nbsp;Down, As Played, Random, Custom
+          &mdash; over eleven scales, four rates, and patterns of 4 to 32 steps.
+          Draw in the grid while a preset is playing and you are editing your
+          Custom pattern: the mode selector alone decides what is heard, so the
+          one you are building never interrupts the one you are listening to.
+        </p>
+      </div>
+
+      <figure class="screen">
+        <picture>
+          <source srcset="img/arpeggiator.avif" type="image/avif">
+          <img src="img/arpeggiator.png" width="1671" height="921"
+               alt="The MiniHub arpeggiator: a control strip reading Root C, Scale Chromatic, Mode Up, Rate 1/16, Steps 8 and Snap to Scale off, above a piano roll where eight notes climb one semitone at a time from C4 to F sharp 4 across steps 1 to 7 and fall back to C4 on step 8, with a velocity lane of eight equal bars below it on a 0 to 127 axis.">
+        </picture>
+      </figure>
+      <p class="caption">Arpeggiator &middot; the Up preset drawn out as eight steps, and the velocity lane under it</p>
+
+      <div class="features">
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-midi"></span> Native engine</p>
+          <h3>The window edits it, C++ plays it</h3>
+          <p>The pattern is sent to the audio engine and runs on the same clock as
+             everything else. Close the panel, open another page, unplug the
+             editor entirely: what you wired keeps playing.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> Per step</p>
+          <h3>Pitch, velocity, gate, rest, tie</h3>
+          <p>Click a cell to draw a note, drag it to move it, drag its right edge
+             for length. Velocity is a lane you drag, across the full 1&ndash;127
+             MIDI range, and a step can rest or tie into the next.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> Scale</p>
+          <h3>Guidance, never a cage</h3>
+          <p>Eleven scales mark the rows that belong and dim the rest, and the
+             root is ruled across the grid. Snap to Scale rounds what you draw;
+             with it off, every row stays as editable as before. Random takes a
+             seed saved with the project, not one drawn at launch.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="sequencer">
     <div class="wrap">
       <div class="section-head">

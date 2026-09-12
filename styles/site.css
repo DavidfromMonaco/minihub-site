@@ -399,7 +399,6 @@ h1, h2, h3 {
   block-size: auto;
   border-radius: calc(var(--radius) - 6px);
 }
-.screen.is-pearl img { min-inline-size: 40rem; }
 .caption {
   margin: 0.9rem 0 0;
   font-family: var(--mono);
