@@ -225,6 +225,70 @@ h1, h2, h3 {
   transition: color 0.15s ease;
 }
 .nav a:hover { color: var(--text); }
+
+/* Le menu des parties, sous Features. La page interdit le script
+   (`script-src 'none'`), donc il s'ouvre au survol et au clavier
+   (`:focus-within`), jamais par un gestionnaire. Le lien reste un lien : un
+   clic mene toujours a la vue d'ensemble. */
+.nav-drop {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.nav-drop-label::after {
+  content: "";
+  display: inline-block;
+  margin-inline-start: 0.42rem;
+  border: 0.26rem solid transparent;
+  border-block-start-color: currentColor;
+  translate: 0 0.15rem;
+}
+.nav-drop-menu {
+  position: absolute;
+  inset-block-start: calc(100% + 0.6rem);
+  inset-inline-start: 50%;
+  display: grid;
+  gap: 0.1rem;
+  min-inline-size: 11rem;
+  padding: 0.45rem;
+  background: var(--ground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1.2rem 2.4rem rgb(0 0 0 / 0.5);
+  opacity: 0;
+  visibility: hidden;
+  translate: -50% -0.35rem;
+  transition: opacity 0.14s ease, translate 0.14s ease, visibility 0s linear 0.14s;
+}
+/* La bande transparente entre le lien et le panneau : sans elle, descendre la
+   souris traverse un vide et le menu se referme sous le doigt. */
+.nav-drop-menu::before {
+  content: "";
+  position: absolute;
+  inset-block-end: 100%;
+  inset-inline: 0;
+  block-size: 0.7rem;
+}
+.nav-drop:hover .nav-drop-menu,
+.nav-drop:focus-within .nav-drop-menu {
+  opacity: 1;
+  visibility: visible;
+  translate: -50% 0;
+  transition-delay: 0s;
+}
+.nav-drop-menu a {
+  padding: 0.4rem 0.6rem;
+  border-radius: calc(var(--radius) - 0.2rem);
+  white-space: nowrap;
+}
+.nav-drop-menu a:hover,
+.nav-drop-menu a:focus-visible {
+  color: var(--text);
+  background: color-mix(in srgb, var(--text) 9%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-drop-menu { transition: none; }
+}
 @media (max-width: 640px) {
   .nav .optional { display: none; }
 }
