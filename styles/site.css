@@ -440,6 +440,23 @@ h1, h2, h3 {
   padding: clamp(1.4rem, 3vw, 2rem);
   background: var(--ground);
 }
+/* Sept fiches dans une grille de trois : la septieme tient la rangee entiere.
+   Sans cela deux cellules restent vides, et une cellule vide laisse voir le
+   fond de la grille -- qui est la couleur des filets, donc un rectangle gris.
+   Une fiche large a la place, qui prend a partir de 60rem le rythme de la liste
+   des refus : l'intitule a gauche, la phrase a droite. */
+.feature-full {
+  grid-column: 1 / -1;
+}
+@media (min-width: 60rem) {
+  .feature-full {
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 4vw, 3rem);
+  }
+  .feature-full .feature-tag { grid-column: 1; grid-row: 1; }
+  .feature-full h3 { grid-column: 1; grid-row: 2; }
+  .feature-full p { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+}
 .feature-tag {
   display: inline-flex;
   align-items: center;
