@@ -54,7 +54,7 @@
         <a class="btn" href="/#download">Download for Windows</a>
         <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub/blob/master/ARCHITECTURE.md">Read the architecture</a>
       </div>
-      <p class="status-pill"><span class="port is-audio"></span> Pre-alpha 0.3.0 · installer or portable folder</p>
+      <p class="status-pill"><span class="port is-audio"></span> Pre-alpha 0.4.0 · installer or portable folder</p>
     </div>
   </section>
 
@@ -92,7 +92,7 @@
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">What it does</p>
-        <h2>Five parts, one signal path.</h2>
+        <h2>Six parts, one signal path.</h2>
       </div>
 
       <div class="features">
@@ -123,6 +123,14 @@
           <h3>Mixer, Morpher, Arpeggiator</h3>
           <p>Nodes you wire like anything else. The arpeggiator carries its own
              instrument face — knobs and a step grid, not a form.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> Generative</p>
+          <h3>One Ring</h3>
+          <p>Sixteen channels of steps aimed at the parameters of your own patch,
+             thirty-two scenes and one seed &mdash; and four voices that play
+             notes from what it hears.</p>
         </article>
 
         <article class="feature">
@@ -238,6 +246,106 @@
         </picture>
       </figure>
       <p class="caption">Sequencer · one track, the two cables it created, and a WAV export</p>
+    </div>
+  </section>
+
+  <section class="section" id="one-ring">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">One Ring</p>
+        <h2>A sequencer aimed at the rest of your patch.</h2>
+        <p class="lede">
+          Sixteen channels, sixty-four steps each, and every channel pointed at
+          something you already have &mdash; an arpeggiator's rate, a mixer's
+          input level, a morpher's step, the tempo, a parameter of a plugin. It
+          runs in the audio engine on the same clock as the sound, so what it
+          moves keeps moving with the panel closed. And it plays notes of its
+          own: it listens to what reaches it, keeps that as material, plays it
+          through four voices, and writes what it played back into the Sequencer.
+        </p>
+      </div>
+
+      <figure class="screen">
+        <picture>
+          <source srcset="img/one-ring.avif" type="image/avif">
+          <img src="img/one-ring.jpg" width="1632" height="975"
+               alt="One Ring's sequence page: a transport reading Scene A1, bar 1.1, 70 BPM and stopped, scene buttons A to D over eight numbered slots, and a seed with Mutate beside it. Below, sixteen channels whose first seven name their targets — Arpeggiator 1 Rate, Mixer 1 Input 2 level, Morpher 1 Step 1, Sequencer Tempo, a Valhalla plugin parameter, Arpeggiator 1 Mode and Mixer 1 Master — and the sixty-four steps of channel 1, four rows of sixteen with the first step of each row lit, under knobs for length, rate, repeat, offset, swing and humanise.">
+        </picture>
+      </figure>
+      <p class="caption">One Ring &middot; sixteen channels, each aimed at something in the patch, and channel 1's sixty-four steps</p>
+
+      <div class="features">
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> Per channel</p>
+          <h3>Sixteen channels that drift apart</h3>
+          <p>Length, rate, repeat, offset, swing and humanise belong to the
+             channel, so sixteen of them pull against each other instead of
+             marching together. A channel can be turned off, restarted or
+             stopped on its own, and what it aims at is a list of what your
+             patch actually holds.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> Per step</p>
+          <h3>A value, a chance, a condition</h3>
+          <p>A step carries a fixed value, a range it draws from, or a list it
+             walks. Give it a probability and it plays sometimes; give it a
+             condition on another channel and it waits for one. Lock a step
+             &mdash; its state, its chance or its value &mdash; and mutation
+             leaves it alone.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-midi"></span> Scenes</p>
+          <h3>Thirty-two scenes, one seed</h3>
+          <p>Store a scene in A1 to D8 and recall it now or at the next bar,
+             with the channels restarted or left where they stand. Every random
+             draw comes from one seed, so the same seed plays the same piece;
+             Mutate moves one channel or all of them, within what each step
+             allows.</p>
+        </article>
+      </div>
+
+      <figure class="screen">
+        <picture>
+          <source srcset="img/one-ring-voices.avif" type="image/avif">
+          <img src="img/one-ring-voices.jpg" width="1667" height="732"
+               alt="One Ring's voices page: voice 1 of four, reading as the scene sets it, with root C and a chromatic scale, transpose and octave at zero, a range from C minus 1 to G 9, velocity at 100 percent with its softest and loudest at 1 and 127, a gate of 100 percent, shortest a sixty-fourth note and longest sixteen bars, an order knob between Played, Up, Down and Shuffle, a density of 100 percent, and a MIDI channel set to Their own.">
+        </picture>
+      </figure>
+      <p class="caption">One Ring &middot; a voice, its scale, its range, its velocity, and the order it reads the material in</p>
+
+      <div class="features">
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-midi"></span> Material</p>
+          <h3>It listens, then it keeps</h3>
+          <p>What reaches One Ring's MIDI IN &mdash; a Sequencer track aimed at
+             it, or a controller cabled to it &mdash; is captured over a window
+             of your choosing and becomes the node's material. A MIDI clip can
+             be loaded as that material instead, and freezing it puts it out of
+             reach of everything else.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-midi"></span> Four voices</p>
+          <h3>The same notes, played four ways</h3>
+          <p>A channel aimed at a voice plays a slot of the material, or one of
+             its notes. Each of the four has its own root and scale, transpose,
+             octave and spread, velocity and length with their own spreads, the
+             order it reads in &mdash; as played, up, down, shuffled &mdash; a
+             density, and its own MIDI channel.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-audio"></span> The writer</p>
+          <h3>What it played becomes a track</h3>
+          <p>Write takes what the voices played over the last window and puts it
+             in the Sequencer: a new track, a clip replaced, or notes added to
+             one. Turn feedback on and each generation becomes what the voices
+             play next, up to a limit you set &mdash; the piece feeds on itself,
+             and the material it started from is never touched.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -365,7 +473,7 @@
 
         <article class="feature">
           <p class="feature-tag"><span class="port is-midi"></span> Portable</p>
-          <h3>ZIP folder · 143 MB</h3>
+          <h3>ZIP folder · 144 MB</h3>
           <p>Unzip anywhere and run <code>MiniHub.exe</code>. Nothing is
              registered, nothing is written beside it. To update, drop the next
              folder over this one.</p>
@@ -374,17 +482,17 @@
         <article class="feature">
           <p class="feature-tag"><span class="port is-control"></span> Pre-alpha</p>
           <h3>It runs. It is not finished.</h3>
-          <p>The first public build: it plays, hosts VST3 plugins and records,
-             and it is under active development. The rough edges are listed in
-             the release notes rather than left to be discovered.</p>
+          <p>It plays, hosts VST3 plugins, sequences and records, and it is
+             under active development. The rough edges are listed in the release
+             notes rather than left to be discovered.</p>
         </article>
       </div>
 
       <div class="actions">
-        <a class="btn" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.3.0/MiniHub-0.3.0-Setup.exe">Get the installer</a>
-        <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.3.0/MiniHub-0.3.0-portable.zip">Get the portable ZIP</a>
+        <a class="btn" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.4.0/MiniHub-0.4.0-Setup.exe">Get the installer</a>
+        <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.4.0/MiniHub-0.4.0-portable.zip">Get the portable ZIP</a>
       </div>
-      <p class="caption">Not code-signed, so SmartScreen will ask — More info, then Run anyway. <a href="https://github.com/DavidfromMonaco/minihub/releases/tag/v0.3.0">Release notes and SHA-256 sums</a> · <a href="https://github.com/DavidfromMonaco/minihub#build-and-run">Build it from source instead</a></p>
+      <p class="caption">Not code-signed, so SmartScreen will ask — More info, then Run anyway. <a href="https://github.com/DavidfromMonaco/minihub/releases/tag/v0.4.0">Release notes and SHA-256 sums</a> · <a href="https://github.com/DavidfromMonaco/minihub#build-and-run">Build it from source instead</a></p>
     </div>
   </section>
 
@@ -472,7 +580,7 @@
         <p class="eyebrow">Status</p>
         <h2>A personal project, in active development.</h2>
         <p class="lede">
-          One person's project, and the download above is its first public
+          One person's project, and the download above is its third public
           build. It also builds from source on Windows 10 and 11, with Visual
           Studio 2022, CMake 3.22 and Node 20 or newer. The native SDKs are
           fetched separately and never committed.
@@ -482,11 +590,11 @@
       <dl class="state">
         <div>
           <dt>Latest release</dt>
-          <dd>0.3.0<small>pre-alpha, unsigned</small></dd>
+          <dd>0.4.0<small>pre-alpha, unsigned</small></dd>
         </div>
         <div>
           <dt>JavaScript tests</dt>
-          <dd>1 119<small>node:test, no runner</small></dd>
+          <dd>1 241<small>node:test, no runner</small></dd>
         </div>
         <div>
           <dt>Native checks</dt>
