@@ -128,9 +128,10 @@
         <article class="feature">
           <p class="feature-tag"><span class="port is-control"></span> Generative</p>
           <h3>One Ring</h3>
-          <p>Sixteen channels of steps aimed at the parameters of your own patch,
-             thirty-two scenes and one seed &mdash; and four voices that play
-             notes from what it hears.</p>
+          <p>Sixteen channels of steps aimed at whatever its control cable
+             reaches &mdash; rates, levels, tempo, plugin parameters &mdash; up
+             to thirty-two scenes, one seed, and four voices that play notes
+             from what it hears.</p>
         </article>
 
         <article class="feature">
@@ -255,13 +256,16 @@
         <p class="eyebrow">One Ring</p>
         <h2>A sequencer aimed at the rest of your patch.</h2>
         <p class="lede">
-          Sixteen channels, sixty-four steps each, and every channel pointed at
-          something you already have &mdash; an arpeggiator's rate, a mixer's
-          input level, a morpher's step, the tempo, a parameter of a plugin. It
-          runs in the audio engine on the same clock as the sound, so what it
-          moves keeps moving with the panel closed. And it plays notes of its
-          own: it listens to what reaches it, keeps that as material, plays it
-          through four voices, and writes what it played back into the Sequencer.
+          Sixteen channels, four to sixty-four steps each, and every channel
+          aimed at something its control cable reaches &mdash; an arpeggiator's
+          rate, a mixer's level, a morpher's step, the Sequencer's tempo, a
+          parameter of a plugin. Wire the node and its commands appear in the
+          channel's list; unwire it and they go. One Ring runs in the audio
+          engine on its own clock, started by the same Play as the rest, so what
+          it moves keeps moving with the panel closed. And it plays notes as
+          well as commands: what reaches its MIDI IN becomes its material, four
+          voices play that material, and what they played goes back into the
+          Sequencer as a track of its own.
         </p>
       </div>
 
@@ -269,40 +273,41 @@
         <picture>
           <source srcset="img/one-ring.avif" type="image/avif">
           <img src="img/one-ring.jpg" width="1632" height="975"
-               alt="One Ring's sequence page: a transport reading Scene A1, bar 1.1, 70 BPM and stopped, scene buttons A to D over eight numbered slots, and a seed with Mutate beside it. Below, sixteen channels whose first seven name their targets — Arpeggiator 1 Rate, Mixer 1 Input 2 level, Morpher 1 Step 1, Sequencer Tempo, a Valhalla plugin parameter, Arpeggiator 1 Mode and Mixer 1 Master — and the sixty-four steps of channel 1, four rows of sixteen with the first step of each row lit, under knobs for length, rate, repeat, offset, swing and humanise.">
+               alt="One Ring's sequence page: a transport reading Scene A1, bar 1.1, 70 BPM and stopped, scene buttons A to D over eight numbered slots, and a seed with Mutate beside it. Below, sixteen channels whose first seven name their targets — Arpeggiator 1 Rate, Mixer 1 Input 2 level, Morpher 1 Step 1, Sequencer Tempo, a Valhalla plugin parameter, Arpeggiator 1 Mode and Mixer 1 Master — and channel 1's steps, four rows of sixteen with the first of each row lit, under knobs for length, rate, repeat, offset, swing and humanise.">
         </picture>
       </figure>
-      <p class="caption">One Ring &middot; sixteen channels, each aimed at something in the patch, and channel 1's sixty-four steps</p>
+      <p class="caption">One Ring &middot; sixteen channels, each aimed at something its control cable reaches, and channel 1's steps</p>
 
       <div class="features">
         <article class="feature">
           <p class="feature-tag"><span class="port is-control"></span> Per channel</p>
           <h3>Sixteen channels that drift apart</h3>
-          <p>Length, rate, repeat, offset, swing and humanise belong to the
-             channel, so sixteen of them pull against each other instead of
-             marching together. A channel can be turned off, restarted or
-             stopped on its own, and what it aims at is a list of what your
-             patch actually holds.</p>
+          <p>Length, rate, repeats, offset, swing and humanise belong to the
+             channel: four to sixty-four steps at 1/4 to 1/32, running once,
+             twice, eight times or forever. Sixteen of them pull against each
+             other instead of marching together, and each starts, stops and
+             restarts on its own.</p>
         </article>
 
         <article class="feature">
           <p class="feature-tag"><span class="port is-control"></span> Per step</p>
           <h3>A value, a chance, a condition</h3>
           <p>A step carries a fixed value, a range it draws from, or a list it
-             walks. Give it a probability and it plays sometimes; give it a
-             condition on another channel and it waits for one. Lock a step
-             &mdash; its state, its chance or its value &mdash; and mutation
-             leaves it alone.</p>
+             picks from. Add a probability and it plays sometimes; add a
+             condition &mdash; the first pass, the last, every other one,
+             another channel running or not &mdash; and it waits for it. Lock
+             a step, or only its chance or its value, and mutation leaves that
+             alone.</p>
         </article>
 
         <article class="feature">
           <p class="feature-tag"><span class="port is-midi"></span> Scenes</p>
           <h3>Thirty-two scenes, one seed</h3>
-          <p>Store a scene in A1 to D8 and recall it now or at the next bar,
-             with the channels restarted or left where they stand. Every random
-             draw comes from one seed, so the same seed plays the same piece;
-             Mutate moves one channel or all of them, within what each step
-             allows.</p>
+          <p>Thirty-two places, A1 to D8: store a scene, recall it now or at the
+             next bar, with the channels restarted or left where they stand.
+             Every random draw comes from one seed, so the same seed and the
+             same material play the same piece; Mutate varies one channel or all
+             of them, within what each step allows.</p>
         </article>
       </div>
 
@@ -320,30 +325,34 @@
           <p class="feature-tag"><span class="port is-midi"></span> Material</p>
           <h3>It listens, then it keeps</h3>
           <p>What reaches One Ring's MIDI IN &mdash; a Sequencer track aimed at
-             it, or a controller cabled to it &mdash; is captured over a window
-             of your choosing and becomes the node's material. A MIDI clip can
-             be loaded as that material instead, and freezing it puts it out of
-             reach of everything else.</p>
+             it, or a controller cabled to it &mdash; is captured over one to
+             sixteen bars and becomes its material, up to 256 notes. A MIDI clip
+             can be loaded instead, a step of the sequence can start the capture
+             itself, and freezing the material keeps the sequence from changing
+             it.</p>
         </article>
 
         <article class="feature">
           <p class="feature-tag"><span class="port is-midi"></span> Four voices</p>
-          <h3>The same notes, played four ways</h3>
-          <p>A channel aimed at a voice plays a slot of the material, or one of
-             its notes. Each of the four has its own root and scale, transpose,
-             octave and spread, velocity and length with their own spreads, the
-             order it reads in &mdash; as played, up, down, shuffled &mdash; a
-             density, and its own MIDI channel.</p>
+          <h3>Four voices, not four notes</h3>
+          <p>A channel aimed at a voice plays a slot of the material, or one note
+             of it &mdash; and a voice sounds thirty-two notes at once, so the
+             four hold a hundred and twenty-eight. Each has its own root and
+             scale, transpose and octave, velocity and length with their
+             spreads, the order it reads in &mdash; as played, up, down,
+             shuffled &mdash; a density and a MIDI channel, and other steps move
+             those rules while it plays.</p>
         </article>
 
         <article class="feature">
           <p class="feature-tag"><span class="port is-audio"></span> The writer</p>
           <h3>What it played becomes a track</h3>
-          <p>Write takes what the voices played over the last window and puts it
-             in the Sequencer: a new track, a clip replaced, or notes added to
-             one. Turn feedback on and each generation becomes what the voices
-             play next, up to a limit you set &mdash; the piece feeds on itself,
-             and the material it started from is never touched.</p>
+          <p>A step aimed at the writer takes what the voices played over the
+             last one to sixteen bars and writes it into the Sequencer: a new
+             track where it was heard, playing the instrument you name, or the
+             notes of a clip replaced or added to. With feedback on, each
+             generation becomes what the voices play next, at most a set number
+             of times, then it stops itself. The origin is never touched.</p>
         </article>
       </div>
     </div>
