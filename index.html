@@ -47,6 +47,7 @@
           <a href="/#arpeggiator">Arpeggiator</a>
           <a href="/#sequencer">Sequencer</a>
           <a href="/#one-ring">One Ring</a>
+          <a href="/#examples">Example patch</a>
         </span>
       </span>
       <a href="/#approach" class="optional">Approach</a>
@@ -374,6 +375,59 @@
              notes of a clip replaced or added to. With feedback on, each
              generation becomes what the voices play next, at most a set number
              of times, then it stops itself. The origin is never touched.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="examples">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Example patch</p>
+        <h2>One file, two effect chains, one take.</h2>
+        <p class="lede">
+          A patch as it was built in MiniHub. The same WAV plays twice, into two
+          chains of plugins side by side; a mixer brings them back together, and
+          the Sequencer records what comes out as an audio track. Nothing on
+          screen is decoration: every cable is one the sound actually takes.
+        </p>
+      </div>
+
+      <figure class="screen">
+        <picture>
+          <source srcset="img/example-two-chains.avif" type="image/avif">
+          <img src="img/example-two-chains.png" width="1919" height="806"
+               alt="The MiniHub Patch Bay with thirteen nodes. Audio Player 1 feeds VST 2, VST 1, VST 4 and VST 3 in a row, into Mixer 1's first input; Audio Player 2 feeds VST 5 and then VST 6, into Mixer 1's second input, while the MiniLab 3 sends two control cables to VST 6's CTRL IN. Mixer 1 goes into the Sequencer's AUDIO IN and the Sequencer into Audio Output. The sidebar lists VST 1 to VST 6, then Audio Player 1 and 2, then Mixer 1; the header's Plays selector reads Sequencer.">
+        </picture>
+      </figure>
+      <p class="caption">Example patch &middot; one file into two chains in parallel, mixed, recorded, and heard back through the Sequencer alone</p>
+
+      <div class="features">
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-audio"></span> Two chains</p>
+          <h3>The same file, processed twice</h3>
+          <p>Two Audio Players read one recording. The first runs it through
+             Airwindows Consolidated twice, then Wider and TDR Nova; the second
+             through kHs Flanger and kHs Pitch Shifter. Mixer 1 takes both, and
+             grows a free input each time its last one is cabled.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-control"></span> A knob, narrowed</p>
+          <h3>Half a semitone under one knob</h3>
+          <p>Knob K5 and fader F1 of the MiniLab 3 reach the Pitch Shifter.
+             K5 is narrowed in the bindings bar to &minus;0.50 to 0.00: its
+             whole turn is spent detuning by half a semitone, fine enough to
+             ride by hand, where the full &plusmn;24 would jump.</p>
+        </article>
+
+        <article class="feature">
+          <p class="feature-tag"><span class="port is-midi"></span> Record, then listen</p>
+          <h3>The take, without its sources</h3>
+          <p>The mix goes into the Sequencer's AUDIO IN, where an armed audio
+             track records it and passes it on to the output. Set
+             <em>Plays</em> to Sequencer and Play gives back the take alone,
+             not the two players it was made from.</p>
         </article>
       </div>
     </div>
