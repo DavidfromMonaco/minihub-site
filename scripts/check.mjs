@@ -18,6 +18,11 @@ const fail = (rule, detail) => failures.push({ rule, detail });
 function htmlPages(dir = ROOT, found = []) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name === ".git" || entry.name === "node_modules") continue;
+    // Le fichier de validation de Google Search Console n'est pas une page :
+    // Google le lit octet pour octet, et il ne doit porter ni entete, ni pied,
+    // ni CSP. Il est ecarte ici plutot que corrige, parce que le corriger le
+    // casserait.
+    if (dir === ROOT && /^google[0-9a-f]+\.html$/.test(entry.name)) continue;
     const full = join(dir, entry.name);
     if (entry.isDirectory()) htmlPages(full, found);
     else if (entry.name.endsWith(".html")) found.push(full);

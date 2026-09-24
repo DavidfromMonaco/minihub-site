@@ -164,7 +164,9 @@ function currentBlock(html) {
 export function pageIsCurrent() {
   const html = readFileSync(PAGE, "utf8");
   const wanted = `${START}\n${renderCards(readSetups())}\n      ${END}`;
-  return { ok: currentBlock(html) === wanted, wanted, html };
+  // Compare au contenu, pas aux fins de ligne : git les convertit en CRLF sur
+  // Windows, et la page etait dite perimee alors qu'elle etait exacte.
+  return { ok: currentBlock(html).replace(/\r\n/g, "\n") === wanted, wanted, html };
 }
 
 if (process.argv[1] && process.argv[1].endsWith("build-setups.mjs")) {
