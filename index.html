@@ -12,9 +12,9 @@
 <meta property="og:title" content="MiniHub — free, open-source node-based DAW for Windows">
 <meta property="og:description" content="Typed cables in a node-based Patch Bay decide the signal path. A native VST3 host, a sample-accurate sequencer, and learning that binds your knobs to plugin parameters.">
 <meta property="og:image" content="https://minihub.site/img/routing.png">
-<meta property="og:image:width" content="1151">
-<meta property="og:image:height" content="644">
-<meta property="og:image:alt" content="Four nodes wired in the MiniHub Patch Bay: a BeatStep and a MiniLab 3, each drawn as its own faceplate, send control cables to the CTRL In of VST 1, whose Audio Out feeds Audio Output.">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1080">
+<meta property="og:image:alt" content="The MiniHub Patch Bay: a MiniLab 3 and a BeatStep, each drawn as its own faceplate, send control cables to the CTRL In of VST 1, whose Audio Out feeds Audio Output.">
 <meta name="twitter:card" content="summary_large_image">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
 <meta name="color-scheme" content="dark">
@@ -76,7 +76,7 @@
         <a class="btn" href="/#download">Download for Windows</a>
         <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub/blob/master/ARCHITECTURE.md">Read the architecture</a>
       </div>
-      <p class="status-pill"><span class="port is-audio"></span> Beta 0.9.0 · installer or portable folder</p>
+      <p class="status-pill"><span class="port is-audio"></span> Beta 0.9.2 · installer or portable folder</p>
     </div>
   </section>
 
@@ -96,8 +96,8 @@
       <figure class="screen">
         <picture>
           <source srcset="img/routing.avif" type="image/avif">
-          <img src="img/routing.png" width="1151" height="644"
-               alt="Four nodes wired in the MiniHub Patch Bay: a BeatStep and a MiniLab 3, each drawn as its own faceplate with a purple control port on every knob and every pad, send control cables to the CTRL In of VST 1; the MiniLab MIDI Out reaches the MIDI In of that same plugin, whose Audio Out feeds Audio Output.">
+          <img src="img/routing.png" width="1920" height="1080"
+               alt="The MiniHub Patch Bay seen from behind, in the full window: a MiniLab 3 and a BeatStep, each drawn as its own faceplate, send dashed control cables from four knobs, a pad and a fader, and from four knobs and two pads, into the CTRL IN of VST 1; the MiniLab 3 MIDI OUT reaches the MIDI IN of that same plugin, whose AUDIO OUT feeds Audio Output. The header carries the transport, the sidebar lists the two controllers, Audio Output, the Sequencer, the Patch Bay and VST 1, and the status bar reads Controller connected and Audio engine running.">
         </picture>
       </figure>
       <p class="caption">Patch Bay · knobs and pads reach the parameters of the plugin, the keys reach its notes, and only VST 1 makes sound</p>
@@ -188,11 +188,11 @@
       <figure class="screen">
         <picture>
           <source srcset="img/bindings.avif" type="image/avif">
-          <img src="img/bindings.png" width="1637" height="437"
-               alt="The MiniLab 3 control surface drawn in MiniHub: knob K3 is selected and ringed in blue, the small screen reads Pad 1, faders F1 to F4 and eight pads labelled Arp, Pad, Prog, Loop, Stop, Play, Record and Tap sit below, and the bar underneath reads K3 unmapped beside an Arm Learning button.">
+          <img src="img/bindings.png" width="1402" height="182"
+               alt="The bindings bar: the MiniLab 3 drawn as it is, with knobs K1 to K4, fader F1 and pad P1 marked as bound and K1 selected; beside it, K1 reads Vital · Filter 1 Cutoff, its range running from min to max, next to an Arm Learning button and a Clear button.">
         </picture>
       </figure>
-      <p class="caption">Control bindings · K3 selected, unmapped, waiting to be armed</p>
+      <p class="caption">Control bindings · K1 bound to the filter cutoff of Vital, over its whole range</p>
     </div>
   </section>
 
@@ -214,8 +214,8 @@
       <figure class="screen">
         <picture>
           <source srcset="img/arpeggiator.avif" type="image/avif">
-          <img src="img/arpeggiator.png" width="1671" height="921"
-               alt="The MiniHub arpeggiator: a control strip reading Root C, Scale Chromatic, Mode Up, Rate 1/16, Steps 8 and Snap to Scale off, above a piano roll where eight notes climb one semitone at a time from C4 to F sharp 4 across steps 1 to 7 and fall back to C4 on step 8, with a velocity lane of eight equal bars below it on a 0 to 127 axis.">
+          <img src="img/arpeggiator.png" width="1692" height="950"
+               alt="The MiniHub arpeggiator's faceplate: a control strip reading Root C, Scale Chromatic, Mode Up, Rate 1/16, Steps 8, Snap to Scale and Hold off and the arpeggiator on, above a piano roll where eight notes climb one semitone at a time from C4 to F sharp 4 across steps 1 to 7 and fall back to C4 on step 8, with a velocity lane of eight equal bars below it on a 0 to 127 axis.">
         </picture>
       </figure>
       <p class="caption">Arpeggiator &middot; the Up preset drawn out as eight steps, and the velocity lane under it</p>
@@ -264,11 +264,11 @@
       <figure class="screen">
         <picture>
           <source srcset="img/sequencer.avif" type="image/avif">
-          <img src="img/sequencer.png" width="1702" height="520"
-               alt="The MiniHub sequencer: one MIDI track taking Minilab3 MIDI as its input and VST 1 as its destination, both cables reported as connected underneath, beside an empty timeline ruled in bars and an export panel offering WAV at 24-bit.">
+          <img src="img/sequencer.png" width="1712" height="482"
+               alt="The MiniHub Sequencer: four MIDI tracks named Keys, Bass, Lead and Arp, with clips across eight bars and the Lead coming in at bar 5, Keys armed to record. Above them the selected track reads Arp, its input Minilab3 MIDI and its destination Arpeggiator 1, both cables reported connected, and a green line says the armed and routed tracks are ready to record; Loop runs from bar 1 to 4 and Record is set to Overdub.">
         </picture>
       </figure>
-      <p class="caption">Sequencer · one track, the two cables it created, and a WAV export</p>
+      <p class="caption">Sequencer · four tracks over eight bars, and the input and destination of the selected one, both cables in place</p>
     </div>
   </section>
 
@@ -294,8 +294,8 @@
       <figure class="screen">
         <picture>
           <source srcset="img/one-ring.avif" type="image/avif">
-          <img src="img/one-ring.jpg" width="1632" height="975"
-               alt="One Ring's sequence page: a transport reading Scene A1, bar 1.1, 70 BPM and stopped, scene buttons A to D over eight numbered slots, and a seed with Mutate beside it. Below, sixteen channels whose first seven name their targets — Arpeggiator 1 Rate, Mixer 1 Input 2 level, Morpher 1 Step 1, Sequencer Tempo, a Valhalla plugin parameter, Arpeggiator 1 Mode and Mixer 1 Master — and channel 1's steps, four rows of sixteen with the first of each row lit, under knobs for length, rate, repeat, offset, swing and humanise.">
+          <img src="img/one-ring.jpg" width="1664" height="990"
+               alt="One Ring's sequence page: a transport reading Scene A1, bar 1.1, 110 BPM and stopped, scene keys A to D over eight numbered slots, and a seed with Mutate beside it. Below, sixteen channels whose first seven name their targets — Arpeggiator 1 Rate, Mixer 1 Input 2 level, the filter of Vital in VST 1, Sequencer Tempo, Arpeggiator 1 Mode, the mute of the Sequencer's Lead track and One Ring's own scene recall — and channel 1's steps, four rows of sixteen with steps 1, 5, 9, 13 and 15 lit, under knobs for length, rate, repeat, offset, swing and humanise.">
         </picture>
       </figure>
       <p class="caption">One Ring &middot; sixteen channels, each aimed at something its control cable reaches, and channel 1's steps</p>
@@ -336,7 +336,7 @@
       <figure class="screen">
         <picture>
           <source srcset="img/one-ring-voices.avif" type="image/avif">
-          <img src="img/one-ring-voices.jpg" width="1667" height="732"
+          <img src="img/one-ring-voices.jpg" width="1664" height="732"
                alt="One Ring's voices page: voice 1 of four, reading as the scene sets it, with root C and a chromatic scale, transpose and octave at zero, a range from C minus 1 to G 9, velocity at 100 percent with its softest and loudest at 1 and 127, a gate of 100 percent, shortest a sixty-fourth note and longest sixteen bars, an order knob between Played, Up, Down and Shuffle, a density of 100 percent, and a MIDI channel set to Their own.">
         </picture>
       </figure>
@@ -396,8 +396,8 @@
       <figure class="screen">
         <picture>
           <source srcset="img/example-two-chains.avif" type="image/avif">
-          <img src="img/example-two-chains.png" width="1919" height="806"
-               alt="The MiniHub Patch Bay with thirteen nodes. Audio Player 1 feeds VST 2, VST 1, VST 4 and VST 3 in a row, into Mixer 1's first input; Audio Player 2 feeds VST 5 and then VST 6, into Mixer 1's second input, while the MiniLab 3 sends two control cables to VST 6's CTRL IN. Mixer 1 goes into the Sequencer's AUDIO IN and the Sequencer into Audio Output. The sidebar lists VST 1 to VST 6, then Audio Player 1 and 2, then Mixer 1; the header's Plays selector reads Sequencer.">
+          <img src="img/example-two-chains.png" width="1920" height="800"
+               alt="The MiniHub Patch Bay with twelve nodes. Audio Player 1 feeds VST 1, VST 2, VST 3 and VST 4 in a row — Airwindows Consolidated twice, Wider and TDR Nova — into Mixer 1's first input; Audio Player 2 feeds VST 5 and VST 6, kHs Flanger and kHs Pitch Shifter, into Mixer 1's second input, while the MiniLab 3 sends two control cables to VST 6's CTRL IN. Mixer 1 goes into the Sequencer's AUDIO IN and the Sequencer into Audio Output. The sidebar lists VST 1 to VST 6, then Audio Player 1 and 2, then Mixer 1; the header's Plays selector reads Sequencer.">
         </picture>
       </figure>
       <p class="caption">Example patch &middot; one file into two chains in parallel, mixed, recorded, and heard back through the Sequencer alone</p>
@@ -573,10 +573,10 @@
       </div>
 
       <div class="actions">
-        <a class="btn" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.9.0/MiniHub-0.9.0-Setup.exe">Get the installer</a>
-        <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.9.0/MiniHub-0.9.0-portable.zip">Get the portable ZIP</a>
+        <a class="btn" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.9.2/MiniHub-0.9.2-Setup.exe">Get the installer</a>
+        <a class="btn-quiet" href="https://github.com/DavidfromMonaco/minihub/releases/download/v0.9.2/MiniHub-0.9.2-portable.zip">Get the portable ZIP</a>
       </div>
-      <p class="caption">Not code-signed, so SmartScreen will ask — More info, then Run anyway. <a href="https://github.com/DavidfromMonaco/minihub/releases/tag/v0.9.0">Release notes and SHA-256 sums</a> · <a href="https://github.com/DavidfromMonaco/minihub#build-and-run">Build it from source instead</a></p>
+      <p class="caption">Not code-signed, so SmartScreen will ask — More info, then Run anyway. <a href="https://github.com/DavidfromMonaco/minihub/releases/tag/v0.9.2">Release notes and SHA-256 sums</a> · <a href="https://github.com/DavidfromMonaco/minihub#build-and-run">Build it from source instead</a></p>
       <p class="caption">It is a beta, so it can still break somewhere. <a href="https://github.com/DavidfromMonaco/minihub/issues/new/choose">Tell me what broke</a> — or use <strong>Report a bug</strong> on MiniHub's own Home page, which fills your version and Windows release in for you. Anything that is not a bug goes in <a href="https://github.com/DavidfromMonaco/minihub/discussions">Discussions</a>.</p>
     </div>
   </section>
@@ -649,8 +649,8 @@
                there. The window reloads, and from then on MiniHub draws and
                decodes your controller from your file.</p>
             <figure class="step-shot">
-              <img src="img/profile-import.png" width="468" height="302"
-                   alt="The Profile panel in MiniHub: it is running BeatStep and MiniLab 3, listing MiniLab 3 as shipped with MiniHub with 29 controls and Arturia BeatStep with 41 controls from arturia-beatstep.json, each marked Loaded with an Unload button, above an Import a profile button and a note that loading or unloading a controller reloads the window.">
+              <img src="img/profile-import.png" width="835" height="314"
+                   alt="The Profile panel in MiniHub: it is running MiniLab 3 and BeatStep, listing MiniLab 3 as shipped with MiniHub with 29 controls and Arturia BeatStep with 41 controls from arturia-beatstep.json, each marked Loaded with an Unload button, above Import a profile and Browse setups on minihub.site, and a note that loading or unloading a controller reloads the window.">
             </figure>
             <p class="caption">Two controllers loaded at once · each one gets its own page</p>
           </div>
@@ -675,11 +675,11 @@
       <dl class="state">
         <div>
           <dt>Latest release</dt>
-          <dd>0.9.0<small>beta, unsigned</small></dd>
+          <dd>0.9.2<small>beta, unsigned</small></dd>
         </div>
         <div>
           <dt>JavaScript tests</dt>
-          <dd>1 352<small>node:test, no runner</small></dd>
+          <dd>1 516<small>node:test, no runner</small></dd>
         </div>
         <div>
           <dt>Native checks</dt>
