@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code signing policy — MiniHub</title>
+<meta name="description" content="How MiniHub's Windows downloads are built and signed: free code signing provided by SignPath.io, certificate by SignPath Foundation; who approves a release; and what MiniHub sends over the network, which is nothing.">
+<link rel="canonical" href="https://minihub.site/code-signing/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MiniHub">
+<meta property="og:url" content="https://minihub.site/code-signing/">
+<meta property="og:title" content="Code signing policy — MiniHub">
+<meta property="og:description" content="How MiniHub's Windows downloads are built and signed, who approves a release, and what MiniHub sends over the network.">
+<meta name="twitter:card" content="summary">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0e1013">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 4 26.4 10 26.4 22 16 28 5.6 22 5.6 10Z" fill="none" stroke="#3a5a9f" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="16" cy="4" r="3.4" fill="#0e1013" stroke="#4f8cff" stroke-width="2.2"/>
+        <circle cx="26.4" cy="22" r="3.4" fill="#0e1013" stroke="#e0b04c" stroke-width="2.2"/>
+        <circle cx="5.6" cy="22" r="3.4" fill="#0e1013" stroke="#c77dff" stroke-width="2.2"/>
+      </svg>
+      MiniHub
+    </a>
+    <nav class="nav">
+      <a href="/#patch-bay">Patch Bay</a>
+      <span class="nav-drop optional">
+        <a href="/#features" class="nav-drop-label">Features</a>
+        <span class="nav-drop-menu">
+          <a href="/#patch-bay">Patch Bay</a>
+          <a href="/#learning">Control learning</a>
+          <a href="/#arpeggiator">Arpeggiator</a>
+          <a href="/#sequencer">Sequencer</a>
+          <a href="/#one-ring">One Ring</a>
+          <a href="/#examples">Example patch</a>
+        </span>
+      </span>
+      <a href="/#approach" class="optional">Approach</a>
+      <a href="/setups/">Setups</a>
+      <a href="/builder/">Builder</a>
+      <a href="/#download">Download</a>
+      <a href="/#getting-started">Get started</a>
+      <a href="https://github.com/DavidfromMonaco/minihub">Source</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="section" id="code-signing-policy">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Downloads</p>
+        <h2>Code signing policy</h2>
+        <p class="lede">
+          Free code signing provided by <a href="https://about.signpath.io/">SignPath.io</a>,
+          certificate by <a href="https://signpath.org/">SignPath Foundation</a>.
+        </p>
+      </div>
+
+      <dl class="refusals">
+        <div>
+          <dt>What is signed</dt>
+          <dd>The Windows installer, <code>MiniHub-x.y.z-Setup.exe</code>, and the
+              programs MiniHub is made of: <code>MiniHub.exe</code>, its audio
+              engine and its VST3 scanner. Signing is being set up: the releases
+              up to 0.9.4 are not signed.</dd>
+        </div>
+        <div>
+          <dt>How it is built</dt>
+          <dd>Only what GitHub Actions builds from the
+              <a href="https://github.com/DavidfromMonaco/minihub">public
+              repository</a> is signed — never a build made on a personal
+              machine. The native libraries it compiles against are fetched at
+              pinned revisions, and every release carries its SHA-256 sums.</dd>
+        </div>
+        <div>
+          <dt>Committers and reviewers</dt>
+          <dd><a href="https://github.com/DavidfromMonaco">DavidfromMonaco</a>.
+              MiniHub has one maintainer, who writes and reviews every change.</dd>
+        </div>
+        <div>
+          <dt>Approvers</dt>
+          <dd><a href="https://github.com/DavidfromMonaco">DavidfromMonaco</a>.
+              Each signing request is approved by hand, one release at a time.</dd>
+        </div>
+        <div>
+          <dt>Privacy</dt>
+          <dd>This program will not transfer any information to other networked
+              systems unless specifically requested by the user or the person
+              installing or operating it.</dd>
+        </div>
+        <div>
+          <dt>Plug-ins</dt>
+          <dd>The VST3 plug-ins you load into MiniHub are other people's
+              programs, under their own terms. One that signs you in, checks a
+              licence or downloads sounds does so itself, not through
+              MiniHub.</dd>
+        </div>
+        <div>
+          <dt>Licences</dt>
+          <dd>Open source: <a href="https://github.com/DavidfromMonaco/minihub">MIT</a>,
+              and the GNU AGPLv3 for the native audio engine and the VST3 scanner,
+              which link the JUCE framework.</dd>
+        </div>
+        <div>
+          <dt>Checking a file</dt>
+          <dd>Right-click it, <em>Properties</em>, <em>Digital Signatures</em>:
+              a signed MiniHub file names SignPath Foundation. Something wrong?
+              <a href="https://github.com/DavidfromMonaco/minihub/issues/new/choose">Say
+              so</a>.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <p>MiniHub — a free, open-source music workstation for Windows. MIT licensed; its audio engine, AGPLv3.</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/DavidfromMonaco/minihub">Source</a></li>
+        <li><a href="https://github.com/DavidfromMonaco/minihub/blob/master/ARCHITECTURE.md">Architecture</a></li>
+        <li><a href="https://github.com/DavidfromMonaco/minihub/blob/master/LICENSE">Licence</a></li>
+        <li><a href="/code-signing/">Code signing policy</a></li>
+        <li><a href="https://github.com/DavidfromMonaco/minihub/issues/new/choose">Report a bug</a></li>
+        <li><a href="https://github.com/DavidfromMonaco/minihub/discussions">Discussions</a></li>
+      </ul>
+    </div>
+    <p class="disclaimer">
+      MiniHub is an independent project and is not affiliated with, endorsed by or
+      sponsored by Arturia. MiniLab is a trademark of Arturia. This site sets no
+      cookies and collects nothing.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -3,4 +3,5 @@
   <url><loc>https://minihub.site/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://minihub.site/setups/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://minihub.site/builder/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://minihub.site/code-signing/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
 </urlset>
