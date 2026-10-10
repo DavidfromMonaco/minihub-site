@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://minihub.site/img/routing.png">
 <meta property="og:image:width" content="1920">
 <meta property="og:image:height" content="1080">
-<meta property="og:image:alt" content="The MiniHub Patch Bay: a MiniLab 3 and a BeatStep, each drawn as its own faceplate, send control cables to the CTRL In of VST 1, whose Audio Out feeds Audio Output.">
+<meta property="og:image:alt" content="The MiniHub Patch Bay: a MiniLab 3 and a BeatStep, each drawn as its own faceplate, send control cables to VST 1, whose audio goes on to the Mix Console.">
 <meta name="twitter:card" content="summary_large_image">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
 <meta name="color-scheme" content="dark">
@@ -97,7 +97,7 @@
         <picture>
           <source srcset="img/routing.avif" type="image/avif">
           <img src="img/routing.png" width="1920" height="1080"
-               alt="The MiniHub Patch Bay seen from behind, in the full window: a MiniLab 3 and a BeatStep, each drawn as its own faceplate, send dashed control cables from four knobs, a pad and a fader, and from four knobs and two pads, into the CTRL IN of VST 1; the MiniLab 3 MIDI OUT reaches the MIDI IN of that same plugin, whose AUDIO OUT feeds Audio Output. The header carries the transport, the sidebar lists the two controllers, Audio Output, the Sequencer, the Patch Bay and VST 1, and the status bar reads Controller connected and Audio engine running.">
+               alt="The MiniHub Patch Bay seen from behind, in the full window: a MiniLab 3 and a BeatStep, each drawn as its own faceplate, send dashed control cables from four knobs, a pad and a fader, and from four knobs and two pads, to VST 1, which holds one plugin; the MiniLab 3's MIDI OUT reaches the same node, whose audio goes on to the Mix Console. VST 1's card lists what reaches it — the MiniLab 3's MIDI, the MiniLab 3's controls and the BeatStep's controls — each switched On, and the Mix Console's lists VST 1's audio. The header carries the transport and its metal keys, the sidebar lists the two controllers, the Mix Console, the Sequencer, the Patch Bay and VST 1, and the status bar reads No controller detected and Audio engine running.">
         </picture>
       </figure>
       <p class="caption">Patch Bay · knobs and pads reach the parameters of the plugin, the keys reach its notes, and only VST 1 makes sound</p>
@@ -189,7 +189,7 @@
         <picture>
           <source srcset="img/bindings.avif" type="image/avif">
           <img src="img/bindings.png" width="1402" height="182"
-               alt="The bindings bar: the MiniLab 3 drawn as it is, with knobs K1 to K4, fader F1 and pad P1 marked as bound and K1 selected; beside it, K1 reads Vital · Filter 1 Cutoff, its range running from min to max, next to an Arm Learning button and a Clear button.">
+               alt="The bindings bar: the MiniLab 3 drawn as it is, with knob K1 bound and selected; beside it, K1 reads Vital · Filter 1 Cutoff, its range running from min to max, next to an Arm Learning key and a Clear key.">
         </picture>
       </figure>
       <p class="caption">Control bindings · K1 bound to the filter cutoff of Vital, over its whole range</p>
@@ -265,7 +265,7 @@
         <picture>
           <source srcset="img/sequencer.avif" type="image/avif">
           <img src="img/sequencer.png" width="1712" height="482"
-               alt="The MiniHub Sequencer: four MIDI tracks named Keys, Bass, Lead and Arp, with clips across eight bars and the Lead coming in at bar 5, Keys armed to record. Above them the selected track reads Arp, its input Minilab3 MIDI and its destination Arpeggiator 1, both cables reported connected, and a green line says the armed and routed tracks are ready to record; Loop runs from bar 1 to 4 and Record is set to Overdub.">
+               alt="The MiniHub Sequencer: four MIDI tracks named Keys, Bass, Lead and Arp, with clips across eight bars and the Lead coming in at bar 5, Keys armed to record. Above them the selected track reads Arp, with no MIDI input, since no controller is connected, and its destination Arpeggiator 1, its output cable reported connected; a line asks for a controller to be connected and chosen as a track's input. Loop runs from bar 1 to 4 and Record is set to Overdub.">
         </picture>
       </figure>
       <p class="caption">Sequencer · four tracks over eight bars, and the input and destination of the selected one, both cables in place</p>
@@ -397,7 +397,7 @@
         <picture>
           <source srcset="img/example-two-chains.avif" type="image/avif">
           <img src="img/example-two-chains.png" width="1920" height="800"
-               alt="The MiniHub Patch Bay with twelve nodes. Audio Player 1 feeds VST 1, VST 2, VST 3 and VST 4 in a row — Airwindows Consolidated twice, Wider and TDR Nova — into Mixer 1's first input; Audio Player 2 feeds VST 5 and VST 6, kHs Flanger and kHs Pitch Shifter, into Mixer 1's second input, while the MiniLab 3 sends two control cables to VST 6's CTRL IN. Mixer 1 goes into the Sequencer's AUDIO IN and the Sequencer into Audio Output. The sidebar lists VST 1 to VST 6, then Audio Player 1 and 2, then Mixer 1; the header's Plays selector reads Sequencer.">
+               alt="The MiniHub Patch Bay with twelve nodes. Audio Player 1 feeds VST 1, VST 2, VST 3 and VST 4 in a row — Airwindows Consolidated twice, Wider and TDR Nova — into Mixer 1; Audio Player 2 feeds VST 5 and VST 6, kHs Flanger and kHs Pitch Shifter, into Mixer 1 as well, while the MiniLab 3 sends two control cables to VST 6. Mixer 1 goes into the Sequencer and the Sequencer into the Mix Console. The sidebar lists VST 1 to VST 6, then Audio Player 1 and 2, then Mixer 1; the header's Plays selector reads Sequencer.">
         </picture>
       </figure>
       <p class="caption">Example patch &middot; one file into two chains in parallel, mixed, recorded, and heard back through the Sequencer alone</p>
@@ -424,8 +424,8 @@
         <article class="feature">
           <p class="feature-tag"><span class="port is-midi"></span> Record, then listen</p>
           <h3>The take, without its sources</h3>
-          <p>The mix goes into the Sequencer's AUDIO IN, where an armed audio
-             track records it and passes it on to the output. Set
+          <p>The mix goes into the Sequencer, where an armed audio track
+             records it and passes it on to the Mix Console. Set
              <em>Plays</em> to Sequencer and Play gives back the take alone,
              not the two players it was made from.</p>
         </article>
